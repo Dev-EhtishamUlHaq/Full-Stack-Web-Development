@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SYS.NET // NODE_09 — Cyber-Deck Console</title>
+<meta name="description" content="Terminal / cyber-deck UI concept — CRT phosphor console built with HTML and CSS only." />
+<meta name="color-scheme" content="dark" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ======================================================================
+     CSS-ONLY SYSTEM SWITCHES — phosphor tube + CRT hardware FX
+     ====================================================================== -->
+<input class="sys-input" type="radio" name="phosphor" id="p-green" checked />
+<input class="sys-input" type="radio" name="phosphor" id="p-amber" />
+<input class="sys-input" type="radio" name="phosphor" id="p-cyan" />
+<input class="sys-input" type="checkbox" id="fx" checked />
+
+<div class="deck">
+
+  <!-- hardware emulation overlays -->
+  <div class="crt crt--scan" aria-hidden="true"></div>
+  <div class="crt crt--roll" aria-hidden="true"></div>
+  <div class="crt crt--glass" aria-hidden="true"></div>
+
+  <!-- ====================================================================
+       SYSTEM HEADER
+       ==================================================================== -->
+  <header class="sysbar">
+    <h1 class="sysbar__id">SYS.NET<b> // </b>NODE_09<b> // </b>DECK_V2.7</h1>
+    <span class="sysbar__stat">MEM: <b>64%</b></span>
+    <span class="sysbar__stat">CPU: <b>37%</b></span>
+    <span class="sysbar__stat">UP: <b>412:09:51</b></span>
+    <span class="sysbar__stat">USR: <b>root@node09</b></span>
+
+    <nav class="sysbar__nav" aria-label="Primary">
+      <a href="#sec-diag" aria-current="page">/DIAG</a>
+      <a href="#sec-proc">/PROC</a>
+      <a href="#sec-net">/NET</a>
+      <a href="#sec-ui">/UI_LIB</a>
+      <a href="#modal-sys">/HELP</a>
+    </nav>
+  </header>
+
+  <div class="grid">
+
+    <!-- ==================================================================
+         LEFT RAIL — navigation tree + tube controls
+         ================================================================== -->
+    <aside class="rail rail--left">
+
+      <section class="panel" aria-labelledby="t-nav">
+        <h2 class="panel__title" id="t-nav">NAV</h2>
+        <ul>
+          <li><a class="btn" href="#sec-diag">DIAGNOSTICS</a></li>
+          <li><a class="btn" href="#sec-proc">PROCESSES</a></li>
+          <li><a class="btn" href="#sec-net">NET_MAP</a></li>
+          <li><a class="btn" href="#sec-log">LOG_STREAM</a></li>
+          <li><a class="btn" href="#sec-ui">UI_LIBRARY</a></li>
+        </ul>
+        <hr class="rule" />
+        <p class="ind"><span class="sr-only">Status: </span>LINK: <b>STABLE</b></p>
+        <p class="ind ind--warn"><span class="sr-only">Status: </span>TEMP: <b>71C</b></p>
+        <p class="ind ind--down"><span class="sr-only">Status: </span>BKP: <b>FAILED</b></p>
+      </section>
+
+      <section class="panel" aria-labelledby="t-tube">
+        <h2 class="panel__title" id="t-tube">TUBE</h2>
+        <div class="switches" role="group" aria-label="Phosphor tube and CRT effects">
+          <label for="p-green">P1_GREEN</label>
+          <label for="p-amber">P3_AMBER</label>
+          <label for="p-cyan">CYAN</label>
+        </div>
+        <hr class="rule" />
+        <div class="switches">
+          <label for="fx">CRT_FX</label>
+        </div>
+        <p class="dim" style="font-size:12px;">Scanlines + glow off<br />for low eye strain.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="t-load">
+        <h2 class="panel__title" id="t-load">TASK</h2>
+        <p>
+          <span class="spin" aria-hidden="true"><span>[|]</span><span>[/]</span><span>[-]</span><span>[\]</span></span>
+          <span class="dim">INDEXING…</span>
+        </p>
+        <p class="dim" aria-hidden="true">[██████░░░░] 60%</p>
+        <p class="sr-only">Indexing, 60 percent complete.</p>
+      </section>
+    </aside>
+
+    <!-- ==================================================================
+         MAIN COLUMN  (max 96ch)
+         ================================================================== -->
+    <main class="main">
+
+      <!-- ---------------- BOOT BANNER ---------------- -->
+      <section class="panel" aria-labelledby="t-boot">
+        <h2 class="panel__title" id="t-boot">BOOT</h2>
+        <span class="panel__meta">ROM 0x7C00</span>
+        <pre class="art" aria-hidden="true">
+ ____ _  _ ___  ____ ____    ___  ____ ____ _  _
+ |    |  | |__] |___ |__/    |  \ |___ |    |_/
+ |___ |__| |__] |___ |  \    |__/ |___ |___ | \_   <b>v2.7</b>
+</pre>
+        <p class="sr-only">Cyber Deck version 2.7.</p>
+        <p class="dim">POST OK · 64K CORE · TTY0 ATTACHED · OPERATOR SESSION OPEN<span class="cursor cursor--bar" aria-hidden="true"></span></p>
+      </section>
+
+      <!-- ---------------- DIAGNOSTICS ---------------- -->
+      <section class="panel" id="sec-diag" aria-labelledby="t-diag">
+        <h2 class="panel__title" id="t-diag">DIAGNOSTICS</h2>
+        <span class="panel__meta">SCAN 00:02:41</span>
+
+        <div class="meter">
+          <span class="meter__label">CPU</span>
+          <span class="meter__bar" aria-hidden="true">░░░░░░░░░░░░░░░░░░░░<span class="meter__fill" style="--pct:37%">████████████████████</span></span>
+          <span class="meter__val">37%</span>
+        </div>
+
+        <div class="meter">
+          <span class="meter__label">MEM</span>
+          <span class="meter__bar" aria-hidden="true">░░░░░░░░░░░░░░░░░░░░<span class="meter__fill" style="--pct:64%">████████████████████</span></span>
+          <span class="meter__val">64%</span>
+        </div>
+
+        <div class="meter meter--net">
+          <span class="meter__label">NET_IO</span>
+          <span class="meter__bar" aria-hidden="true">░░░░░░░░░░░░░░░░░░░░<span class="meter__fill" style="--pct:45%">████████████████████</span></span>
+          <span class="meter__val">45%</span>
+        </div>
+
+        <div class="meter meter--warn">
+          <span class="meter__label">THERM</span>
+          <span class="meter__bar" aria-hidden="true">░░░░░░░░░░░░░░░░░░░░<span class="meter__fill" style="--pct:71%">████████████████████</span></span>
+          <span class="meter__val">71C</span>
+        </div>
+
+        <div class="meter meter--crit">
+          <span class="meter__label">DISK_0</span>
+          <span class="meter__bar" aria-hidden="true">░░░░░░░░░░░░░░░░░░░░<span class="meter__fill" style="--pct:94%">████████████████████</span></span>
+          <span class="meter__val">94%</span>
+        </div>
+
+        <p class="sr-only">CPU 37 percent, memory 64 percent, network IO 45 percent, temperature 71 degrees Celsius, disk 0 at 94 percent.</p>
+
+        <div class="alert alert--warn" role="status">
+          !! WARNING: DISK_FULL <code>[ERR_404]</code> — PURGE CACHE BEFORE NEXT WRITE CYCLE !!
+        </div>
+
+        <hr class="rule" />
+        <div class="btn-row">
+          <button class="btn" type="button">RUN_DIAGNOSTICS</button>
+          <button class="btn btn--hot" type="button">PURGE_CACHE</button>
+          <a class="btn btn--exec" href="#modal-sys">EXECUTE</a>
+          <button class="btn btn--crit" type="button">HALT_NODE</button>
+        </div>
+      </section>
+
+      <!-- ---------------- PROCESS TABLE ---------------- -->
+      <section class="panel" id="sec-proc" aria-labelledby="t-proc">
+        <h2 class="panel__title" id="t-proc">PROCESS_TABLE</h2>
+        <span class="panel__meta">7 OF 7</span>
+
+        <table class="tbl">
+          <caption>Active processes on NODE_09</caption>
+          <thead>
+            <tr>
+              <th scope="col">PID</th><th scope="col">USER</th><th scope="col">PROCESS</th>
+              <th scope="col" class="num">CPU</th><th scope="col" class="num">MEM</th><th scope="col">STATE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0001</td><td>root</td><td>kern.sched</td><td class="num">02.4</td><td class="num">1.1M</td><td>RUN</td></tr>
+            <tr><td>0117</td><td>root</td><td>net.daemon</td><td class="num">11.9</td><td class="num">8.4M</td><td class="net">LISTEN</td></tr>
+            <tr><td>0244</td><td>oper</td><td>deck.render</td><td class="num">09.2</td><td class="num">22.7M</td><td>RUN</td></tr>
+            <tr><td>0391</td><td>oper</td><td>idx.crawler</td><td class="num">07.6</td><td class="num">14.0M</td><td class="hot">WAIT</td></tr>
+            <tr><td>0402</td><td>sys</td><td>bkp.sync</td><td class="num">00.0</td><td class="num">0.9M</td><td class="crit">FAIL</td></tr>
+            <tr><td>0588</td><td>sys</td><td>therm.ctl</td><td class="num">01.3</td><td class="num">0.4M</td><td>RUN</td></tr>
+            <tr><td>0613</td><td>oper</td><td>tty0.shell</td><td class="num">04.8</td><td class="num">3.2M</td><td>RUN</td></tr>
+          </tbody>
+        </table>
+
+        <hr class="rule" />
+        <div class="btn-row">
+          <button class="btn" type="button">REFRESH</button>
+          <button class="btn btn--hot" type="button">RENICE</button>
+          <button class="btn btn--crit" type="button">KILL_PID</button>
+        </div>
+      </section>
+
+      <!-- ---------------- NET MAP ---------------- -->
+      <section class="panel" id="sec-net" aria-labelledby="t-net">
+        <h2 class="panel__title" id="t-net">NET_MAP</h2>
+        <span class="panel__meta">4 PEERS</span>
+
+        <pre class="art" aria-hidden="true">
+        +-----------+        +-----------+
+        | <b>NODE_07</b>   |<i>=======</i>| <b>NODE_08</b>   |
+        | 10.0.0.7  |        | 10.0.0.8  |
+        +-----+-----+        +-----+-----+
+              |                    |
+              +---------+----------+
+                        |
+                  +-----v-----+        +-----------+
+                  | <b>NODE_09</b>   |<i>-------</i>| <b>GATEWAY</b>   |
+                  | 10.0.0.9  |        | 10.0.0.1  |
+                  | <b>[ THIS ]</b>  |        +-----------+
+                  +-----------+
+</pre>
+        <p class="sr-only">
+          This node, NODE_09 at 10.0.0.9, peers with NODE_07 and NODE_08 through a shared
+          link, and connects outbound to the gateway at 10.0.0.1.
+        </p>
+
+        <hr class="rule" />
+        <p class="ind"><span class="sr-only">Status: </span>ROUTE: <b class="net">10.0.0.9 &rarr; 10.0.0.1</b></p>
+        <p class="ind"><span class="sr-only">Status: </span>LATENCY: <b>14ms</b></p>
+        <p class="ind ind--warn"><span class="sr-only">Status: </span>PACKET_LOSS: <b>0.8%</b></p>
+      </section>
+
+      <!-- ---------------- LOG STREAM ---------------- -->
+      <section class="panel" id="sec-log" aria-labelledby="t-log">
+        <h2 class="panel__title" id="t-log">LOG_STREAM</h2>
+        <span class="panel__meta">TAIL -F</span>
+
+        <ul class="stream">
+          <li><span class="t">04:12:07</span> <span class="lvl lvl--ok">[ OK ]</span> <span>kern.sched: 7 tasks scheduled on core 0</span></li>
+          <li><span class="t">04:12:09</span> <span class="lvl lvl--net">[ NET ]</span> <span>handshake accepted from 10.0.0.7:5140</span></li>
+          <li><span class="t">04:12:14</span> <span class="lvl lvl--ok">[ OK ]</span> <span>idx.crawler: 14,880 records indexed</span></li>
+          <li><span class="t">04:13:02</span> <span class="lvl lvl--warn">[WARN]</span> <span>therm.ctl: intake temp 71C exceeds soft ceiling</span></li>
+          <li><span class="t">04:13:48</span> <span class="lvl lvl--err">[ERR ]</span> <span>bkp.sync: volume /dev/sd0 full — write aborted</span></li>
+          <li><span class="t">04:14:01</span> <span class="lvl lvl--net">[ NET ]</span> <span>0x7FFE2C10 mapped to peer buffer</span></li>
+          <li><span class="t">04:14:33</span> <span class="lvl lvl--ok">[ OK ]</span> <span>deck.render: frame budget 4.1ms / 16.6ms</span></li>
+        </ul>
+
+        <div class="prompt">
+          <label class="ps1" for="cmd">root@node09:~$</label>
+          <input id="cmd" type="text" placeholder="type a command…" autocomplete="off" spellcheck="false" />
+          <span class="cursor cursor--us" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <!-- ---------------- UI LIBRARY ---------------- -->
+      <section class="panel" id="sec-ui" aria-labelledby="t-ui">
+        <h2 class="panel__title" id="t-ui">UI_LIBRARY</h2>
+        <span class="panel__meta">COMPONENTS</span>
+
+        <p class="dim">// BUTTONS</p>
+        <div class="btn-row">
+          <button class="btn" type="button">PRIMARY</button>
+          <button class="btn btn--exec" type="button">EXECUTE</button>
+          <button class="btn btn--hot" type="button">ELEVATED</button>
+          <button class="btn btn--crit" type="button">DESTRUCTIVE</button>
+        </div>
+
+        <hr class="rule" />
+        <p class="dim">// CHECKBOXES</p>
+        <label class="opt"><input type="checkbox" checked /><span class="mark" aria-hidden="true"></span><span class="txt">VERBOSE_OUTPUT</span></label>
+        <label class="opt"><input type="checkbox" /><span class="mark" aria-hidden="true"></span><span class="txt">DRY_RUN</span></label>
+        <label class="opt"><input type="checkbox" /><span class="mark" aria-hidden="true"></span><span class="txt">FORCE_OVERWRITE</span></label>
+
+        <hr class="rule" />
+        <p class="dim">// RADIO GROUP</p>
+        <fieldset style="border:0;padding:0;margin:0;">
+          <legend class="sr-only">Scan depth</legend>
+          <label class="opt"><input type="radio" name="depth" checked /><span class="mark" aria-hidden="true"></span><span class="txt">DEPTH_SHALLOW</span></label>
+          <label class="opt"><input type="radio" name="depth" /><span class="mark" aria-hidden="true"></span><span class="txt">DEPTH_FULL</span></label>
+          <label class="opt"><input type="radio" name="depth" /><span class="mark" aria-hidden="true"></span><span class="txt">DEPTH_FORENSIC</span></label>
+        </fieldset>
+
+        <hr class="rule" />
+        <p class="dim">// INDICATORS</p>
+        <p class="ind"><span class="sr-only">Status: </span>STATUS: <b>ONLINE</b></p>
+        <p class="ind ind--warn"><span class="sr-only">Status: </span>QUEUE: <b>DEGRADED</b></p>
+        <p class="ind ind--down"><span class="sr-only">Status: </span>ARCHIVE: <b>OFFLINE</b></p>
+
+        <hr class="rule" />
+        <p class="dim">// ALERTS</p>
+        <div class="alert alert--ok">:: OK: CHECKSUM VERIFIED — 0 MISMATCHES ::</div>
+        <div class="alert alert--warn">!! WARNING: DISK_FULL <code>[ERR_404]</code> !!</div>
+        <div class="alert alert--crit">!! CRITICAL: BACKUP_DAEMON_DOWN <code>[ERR_503]</code> !!</div>
+
+        <hr class="rule" />
+        <p class="dim">// MODAL</p>
+        <div class="btn-row"><a class="btn btn--exec" href="#modal-sys">OPEN_SYS_WINDOW</a></div>
+      </section>
+
+    </main>
+
+    <!-- ==================================================================
+         RIGHT RAIL — live readouts
+         ================================================================== -->
+    <aside class="rail rail--right">
+
+      <section class="panel" aria-labelledby="t-mem">
+        <h2 class="panel__title" id="t-mem">MEM_MAP</h2>
+        <pre class="art" aria-hidden="true">
+<i>0x0000</i> ████████████░░░░ KERNEL
+<i>0x1F40</i> ██████░░░░░░░░░░ BUFFER
+<i>0x3E80</i> ████████████████ CACHE
+<i>0x5DC0</i> ███░░░░░░░░░░░░░ HEAP
+<i>0x7D00</i> ░░░░░░░░░░░░░░░░ FREE
+</pre>
+        <p class="sr-only">Memory map: kernel 75 percent, buffer 38 percent, cache 100 percent, heap 19 percent, free segment empty.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="t-io">
+        <h2 class="panel__title" id="t-io">IO_QUEUE</h2>
+        <ul class="stream">
+          <li><span class="t">Q01</span> <span class="lvl lvl--ok">[ OK ]</span> <span>flush 2.4M</span></li>
+          <li><span class="t">Q02</span> <span class="lvl lvl--ok">[ OK ]</span> <span>read 0x2A0</span></li>
+          <li><span class="t">Q03</span> <span class="lvl lvl--warn">[WAIT]</span> <span>write lock</span></li>
+          <li><span class="t">Q04</span> <span class="lvl lvl--err">[FAIL]</span> <span>bkp volume</span></li>
+        </ul>
+        <hr class="rule" />
+        <p><span class="spin" aria-hidden="true"><span>[|]</span><span>[/]</span><span>[-]</span><span>[\]</span></span> <span class="dim">DRAINING QUEUE</span></p>
+      </section>
+
+      <section class="panel panel--alert" aria-labelledby="t-warn">
+        <h2 class="panel__title" id="t-warn">ATTENTION</h2>
+        <p class="hot">!! DISK_0 AT 94% !!</p>
+        <p class="dim">Est. 41 min to hard stop at current write rate.</p>
+        <hr class="rule" />
+        <div class="btn-row">
+          <button class="btn btn--hot" type="button">PURGE</button>
+          <button class="btn" type="button">SNOOZE</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="t-ops">
+        <h2 class="panel__title" id="t-ops">OPERATOR</h2>
+        <p class="dim">ID&nbsp;&nbsp;&nbsp;<span style="color:var(--fg)">root@node09</span></p>
+        <p class="dim">TTY&nbsp;&nbsp;<span style="color:var(--fg)">/dev/tty0</span></p>
+        <p class="dim">KEY&nbsp;&nbsp;<span class="net">0x9F:2C:A1:04</span></p>
+        <p class="dim">SESS&nbsp;<span style="color:var(--fg)">04:12:00</span> <span class="cursor cursor--us" aria-hidden="true"></span></p>
+      </section>
+    </aside>
+
+  </div>
+
+  <!-- ====================================================================
+       STATUS LINE
+       ==================================================================== -->
+  <footer class="statusline">
+    <b>NODE_09</b>
+    <span>TTY0</span>
+    <span>CPU 37%</span>
+    <span>MEM 64%</span>
+    <span>DISK 94%</span>
+    <span class="push">NO JS &middot; NO IMAGES &middot; HTML + CSS ONLY</span>
+  </footer>
+
+</div>
+
+<!-- ======================================================================
+     MODAL — :target driven, closes by clearing the hash
+     ====================================================================== -->
+<div class="modal" id="modal-sys" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__box">
+    <div class="modal__bar">
+      <h2 id="modal-title">SYS_WINDOW // CONFIRM_EXEC</h2>
+      <a class="btn btn--hot" href="#sec-ui" aria-label="Close system window">X CLOSE_SYS</a>
+    </div>
+    <div class="modal__body">
+      <p>Command <span class="hot">RUN_DIAGNOSTICS --depth=full</span> will lock the process table for approximately 90 seconds.</p>
+      <p class="dim">Peer nodes 07 and 08 will report this node as <span class="crit">UNREACHABLE</span> for the duration of the scan.</p>
+      <p><span class="spin" aria-hidden="true"><span>[|]</span><span>[/]</span><span>[-]</span><span>[\]</span></span> <span class="dim">awaiting operator confirmation<span class="cursor cursor--us" aria-hidden="true"></span></span></p>
+    </div>
+    <div class="modal__foot">
+      <a class="btn btn--exec" href="#sec-diag">CONFIRM</a>
+      <a class="btn" href="#sec-ui">ABORT</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

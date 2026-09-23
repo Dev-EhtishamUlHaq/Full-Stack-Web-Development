@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Facebook</title>
+<meta name="description" content="Facebook home page clone — built with HTML and CSS only. All images are locally generated dummy placeholders." />
+<link rel="icon" href="img/avatar-1.svg" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header">
+
+  <!-- left: logo + search -->
+  <div class="header__left">
+    <a class="logo" href="#top" aria-label="Facebook home">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="20" fill="#1877f2"/>
+        <path fill="#fff" d="M26.4 25.8l.9-5.8h-5.5v-3.8c0-1.6.8-3.1 3.3-3.1h2.5V8.1S25.3 7.7 23.2 7.7c-4.4 0-7.2 2.6-7.2 7.4V20h-5v5.8h5v14h6.2v-14h4.2z"/>
+      </svg>
+    </a>
+    <div class="search" role="search">
+      <label class="sr-only" for="q">Search Facebook</label>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="text" placeholder="Search Facebook" />
+    </div>
+  </div>
+
+  <!-- center: primary navigation -->
+  <nav class="tabs" aria-label="Main">
+    <a class="tab tab--active" href="#top" aria-current="page" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2.5 11.2c-.4.3-.2 1 .3 1H5v7.3c0 .8.7 1.5 1.5 1.5H10v-5.5c0-.8.7-1.5 1.5-1.5h1c.8 0 1.5.7 1.5 1.5V21h3.5c.8 0 1.5-.7 1.5-1.5v-7.3h2.2c.5 0 .7-.7.3-1L12 3z"/></svg>
+    </a>
+    <a class="tab" href="#top" aria-label="Video">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="m10 9.5 5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
+      <span class="tab__badge">9+</span>
+    </a>
+    <a class="tab" href="#top" aria-label="Marketplace">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 9 5 3h14l2 6"/><path d="M9 13h6"/></svg>
+    </a>
+    <a class="tab" href="#top" aria-label="Groups">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="9" r="3.4"/><path d="M2.6 19c0-3.2 2.9-5.2 6.4-5.2s6.4 2 6.4 5.2"/><circle cx="17.5" cy="10" r="2.6"/><path d="M17 15.2c2.6.2 4.4 1.9 4.4 3.8"/></svg>
+    </a>
+    <a class="tab" href="#top" aria-label="Gaming">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4v3a3 3 0 0 1-5.2 2L15 16H9l-.8 1A3 3 0 0 1 3 15v-3a4 4 0 0 1 4-4z"/><path d="M7.5 12v2.5M6.2 13.2h2.6M15.5 12.5h.01M17.5 14.5h.01"/></svg>
+    </a>
+  </nav>
+
+  <!-- right: account actions -->
+  <div class="header__right">
+    <button class="circle-btn" type="button" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+    </button>
+    <button class="circle-btn" type="button" aria-label="Messenger">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.3 2 2 6.2 2 11.7c0 3.1 1.4 5.9 3.7 7.7V23l3.4-1.9c.9.3 1.9.4 2.9.4 5.7 0 10-4.2 10-9.7S17.7 2 12 2zm1 12.6-2.6-2.7-5 2.7 5.5-5.8 2.6 2.7 4.9-2.7-5.4 5.8z"/></svg>
+      <span class="dot">3</span>
+    </button>
+    <button class="circle-btn keep" type="button" aria-label="Notifications">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.5-2.4h-5A2.5 2.5 0 0 0 12 22zm7-6.3v-4.4a7 7 0 0 0-5.3-6.8V3.5a1.7 1.7 0 1 0-3.4 0v1a7 7 0 0 0-5.3 6.8v4.4L3 17.6v1h18v-1l-2-1.9z"/></svg>
+      <span class="dot">8</span>
+    </button>
+    <a class="header__avatar keep" href="#top" aria-label="Your profile">
+      <img class="avatar" src="img/avatar-1.svg" width="40" height="40" alt="Your profile" />
+    </a>
+  </div>
+</header>
+
+<!-- ============================================================
+     PAGE
+     ============================================================ -->
+<div class="layout" id="top">
+
+  <!-- ------------------------------ LEFT RAIL ------------------------------ -->
+  <aside class="col col--left" aria-label="Shortcuts and bookmarks">
+    <nav>
+      <a class="rail-link" href="#top">
+        <img class="avatar" src="img/avatar-1.svg" width="36" height="36" alt="" />
+        <span>Ehtisham Ul Haq</span>
+      </a>
+      <a class="rail-link" href="#top">
+        <span class="rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="3.4"/><path d="M2.6 19c0-3.2 2.9-5.2 6.4-5.2s6.4 2 6.4 5.2"/><circle cx="17.5" cy="10" r="2.6"/><path d="M17 15.2c2.6.2 4.4 1.9 4.4 3.8"/></svg></span>
+        <span>Friends</span>
+      </a>
+      <a class="rail-link" href="#top">
+        <span class="rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+        <span>Memories</span>
+      </a>
+      <a class="rail-link" href="#top">
+        <span class="rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg></span>
+        <span>Saved</span>
+      </a>
+      <a class="rail-link" href="#top">
+        <span class="rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="2"/><circle cx="15" cy="10" r="2"/><path d="M7.5 15.5c1.3 1.4 7.7 1.4 9 0"/></svg></span>
+        <span>Groups</span>
+      </a>
+      <a class="rail-link" href="#top">
+        <span class="rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="m10 9.5 5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg></span>
+        <span>Video</span>
+      </a>
+      <a class="rail-link" href="#top">
+        <span class="rail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 9 5 3h14l2 6"/></svg></span>
+        <span>Marketplace</span>
+      </a>
+      <a class="rail-link" href="#top">
+        <span class="rail-icon chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        <span>See more</span>
+      </a>
+    </nav>
+
+    <hr class="rail-sep" />
+    <h2 class="rail-title">Your shortcuts</h2>
+    <nav>
+      <a class="rail-link" href="#top">
+        <img src="img/story-3.svg" width="36" height="36" alt="" style="border-radius:8px;object-fit:cover;" />
+        <span>Full Stack Lab — Study Group</span>
+      </a>
+      <a class="rail-link" href="#top">
+        <img src="img/story-2.svg" width="36" height="36" alt="" style="border-radius:8px;object-fit:cover;" />
+        <span>Flutter Developers Pakistan</span>
+      </a>
+      <a class="rail-link" href="#top">
+        <img src="img/story-5.svg" width="36" height="36" alt="" style="border-radius:8px;object-fit:cover;" />
+        <span>Air University CS '28</span>
+      </a>
+    </nav>
+
+    <hr class="rail-sep" />
+    <div class="footer-links">
+      <a href="#top">Privacy</a> · <a href="#top">Terms</a> · <a href="#top">Advertising</a> ·
+      <a href="#top">Ad Choices</a> · <a href="#top">Cookies</a> · <a href="#top">More</a>
+      <p>Dummy clone &copy; 2026 — HTML &amp; CSS practice project.</p>
+    </div>
+  </aside>
+
+  <!-- ------------------------------ FEED ------------------------------ -->
+  <main class="feed">
+
+    <!-- ---------- stories ---------- -->
+    <section class="stories" aria-label="Stories">
+      <a class="story story--create" href="#top">
+        <img src="img/avatar-1.svg" alt="Create a story" />
+        <span class="plus" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+        <span class="label">Create story</span>
+      </a>
+
+      <a class="story" href="#top">
+        <span class="story__ring"><img src="img/avatar-2.svg" width="34" height="34" alt="" /></span>
+        <img src="img/story-1.svg" alt="Dummy story image" />
+        <span class="story__name">Ali Khan</span>
+      </a>
+      <a class="story" href="#top">
+        <span class="story__ring"><img src="img/avatar-3.svg" width="34" height="34" alt="" /></span>
+        <img src="img/story-2.svg" alt="Dummy story image" />
+        <span class="story__name">Sara Bilal</span>
+      </a>
+      <a class="story" href="#top">
+        <span class="story__ring"><img src="img/avatar-4.svg" width="34" height="34" alt="" /></span>
+        <img src="img/story-3.svg" alt="Dummy story image" />
+        <span class="story__name">Hamza Raza</span>
+      </a>
+      <a class="story" href="#top">
+        <span class="story__ring"><img src="img/avatar-5.svg" width="34" height="34" alt="" /></span>
+        <img src="img/story-4.svg" alt="Dummy story image" />
+        <span class="story__name">Zoya Kamal</span>
+      </a>
+    </section>
+
+    <!-- ---------- create post ---------- -->
+    <section class="card composer" aria-label="Create post">
+      <div class="composer__top">
+        <img class="avatar" src="img/avatar-1.svg" width="40" height="40" alt="Your profile" />
+        <button class="composer__input" type="button">What's on your mind, Ehtisham?</button>
+      </div>
+      <hr />
+      <div class="composer__actions">
+        <button class="composer__btn" type="button">
+          <svg class="i-live" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="3"/><path d="m16 11 5.5-3v8L16 13z" fill="currentColor" stroke="none"/></svg>
+          <span>Live video</span>
+        </button>
+        <button class="composer__btn" type="button">
+          <svg class="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m4 17 5-5 4 4 3-2 4 4"/></svg>
+          <span>Photo/video</span>
+        </button>
+        <button class="composer__btn" type="button">
+          <svg class="i-feeling" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M8.5 14.5c1.8 2 5.2 2 7 0"/></svg>
+          <span>Feeling/activity</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ---------- post 1: photo post ---------- -->
+    <article class="card post">
+      <header class="post__head">
+        <img class="avatar" src="img/avatar-2.svg" width="40" height="40" alt="" />
+        <div class="post__meta">
+          <a class="post__author" href="#top">Ali Khan</a>
+          <div class="post__sub">
+            <span>3 h</span> ·
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c4 4.5 4 13.5 0 18-4-4.5-4-13.5 0-18z"/></svg>
+          </div>
+        </div>
+        <button class="post__more" type="button" aria-label="Post options">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+        </button>
+      </header>
+
+      <p class="post__text">
+        Finally wrapped up the semester project 🎉 Three weeks of debugging and it finally builds on the first try.
+        <span class="tagline">#studentlife #coding</span>
+      </p>
+
+      <div class="post__media">
+        <img src="img/post-1.svg" width="1000" height="600" alt="Dummy post image" />
+      </div>
+
+      <div class="post__stats">
+        <div class="reactions">
+          <span class="reaction r-like" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10h4v11H2zM8 21h9.5a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 19 10h-5l.8-4a2 2 0 0 0-2-2.4L8 10z"/></svg></span>
+          <span class="reaction r-love" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21S3 14.6 3 8.9A4.9 4.9 0 0 1 12 6a4.9 4.9 0 0 1 9 2.9C21 14.6 12 21 12 21z"/></svg></span>
+          <span class="reaction r-care" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></span>
+          <span class="count">Umar Farooq and 248 others</span>
+        </div>
+        <div><button type="button">32 comments</button> · <button type="button">7 shares</button></div>
+      </div>
+
+      <div class="post__bar">
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h4v11H2zM8 21h9.3a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 18.7 10H14l.8-4A2 2 0 0 0 12.8 3.6L8 10z"/></svg>
+          <span>Like</span>
+        </button>
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H4l1.6-3.2A8 8 0 1 1 21 12z"/></svg>
+          <span>Comment</span>
+        </button>
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M13 4v4C6.5 8.7 4 13 3.5 20c2.6-3.8 5.4-5.3 9.5-5.3V19l8-7.5z"/></svg>
+          <span>Share</span>
+        </button>
+      </div>
+
+      <div class="comments">
+        <div class="comment">
+          <img class="avatar" src="img/avatar-3.svg" width="32" height="32" alt="" />
+          <div>
+            <div class="comment__bubble">
+              <div class="comment__author">Sara Bilal</div>
+              <p class="comment__body">Congratulations! Ship it before the deadline moves again 😄</p>
+            </div>
+            <div class="comment__tools">
+              <button type="button">Like</button><button type="button">Reply</button><span class="time">1 h</span>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <img class="avatar" src="img/avatar-6.svg" width="32" height="32" alt="" />
+          <div>
+            <div class="comment__bubble">
+              <div class="comment__author">Umar Farooq</div>
+              <p class="comment__body">Push the repo, I want to read that database layer.</p>
+            </div>
+            <div class="comment__tools">
+              <button type="button">Like</button><button type="button">Reply</button><span class="time">42 m</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="comment-box">
+          <img class="avatar" src="img/avatar-1.svg" width="32" height="32" alt="" />
+          <div class="field">
+            <label class="sr-only" for="c1">Write a comment</label>
+            <input id="c1" type="text" placeholder="Write a comment..." />
+            <span class="tools" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M8.5 14.5c1.8 2 5.2 2 7 0"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m4 17 5-5 4 4 3-2 4 4"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- post 2: text status on a colored background ---------- -->
+    <article class="card post">
+      <header class="post__head">
+        <img class="avatar" src="img/avatar-4.svg" width="40" height="40" alt="" />
+        <div class="post__meta">
+          <a class="post__author" href="#top">Hamza Raza</a>
+          <div class="post__sub">
+            <span>5 h</span> ·
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="3.2"/><path d="M21 20v-2a4 4 0 0 0-3-3.8"/></svg>
+          </div>
+        </div>
+        <button class="post__more" type="button" aria-label="Post options">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+        </button>
+      </header>
+
+      <div class="status-bg">
+        Status update: 6 tabs of documentation,<br />1 cup of chai, 0 bugs left. ☕
+      </div>
+
+      <div class="post__stats">
+        <div class="reactions">
+          <span class="reaction r-like" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10h4v11H2zM8 21h9.5a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 19 10h-5l.8-4a2 2 0 0 0-2-2.4L8 10z"/></svg></span>
+          <span class="reaction r-care" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></span>
+          <span class="count">94</span>
+        </div>
+        <div><button type="button">11 comments</button></div>
+      </div>
+
+      <div class="post__bar">
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h4v11H2zM8 21h9.3a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 18.7 10H14l.8-4A2 2 0 0 0 12.8 3.6L8 10z"/></svg>
+          <span>Like</span>
+        </button>
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H4l1.6-3.2A8 8 0 1 1 21 12z"/></svg>
+          <span>Comment</span>
+        </button>
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M13 4v4C6.5 8.7 4 13 3.5 20c2.6-3.8 5.4-5.3 9.5-5.3V19l8-7.5z"/></svg>
+          <span>Share</span>
+        </button>
+      </div>
+    </article>
+
+    <!-- ---------- post 3: multi-photo album ---------- -->
+    <article class="card post">
+      <header class="post__head">
+        <img class="avatar" src="img/avatar-3.svg" width="40" height="40" alt="" />
+        <div class="post__meta">
+          <a class="post__author" href="#top">Sara Bilal</a>
+          <div class="post__sub">
+            <span>Yesterday at 21:14</span> ·
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c4 4.5 4 13.5 0 18-4-4.5-4-13.5 0-18z"/></svg>
+          </div>
+        </div>
+        <button class="post__more" type="button" aria-label="Post options">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+        </button>
+      </header>
+
+      <p class="post__text">Weekend trip with the crew — dumping the whole album here 📸</p>
+
+      <div class="post__media post__media--grid">
+        <img src="img/post-2.svg" width="500" height="500" alt="Dummy post image" />
+        <img src="img/post-3.svg" width="500" height="500" alt="Dummy post image" />
+        <img src="img/post-4.svg" width="500" height="500" alt="Dummy post image" />
+        <img src="img/cover.svg" width="500" height="500" alt="Dummy post image" />
+      </div>
+
+      <div class="post__stats">
+        <div class="reactions">
+          <span class="reaction r-love" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21S3 14.6 3 8.9A4.9 4.9 0 0 1 12 6a4.9 4.9 0 0 1 9 2.9C21 14.6 12 21 12 21z"/></svg></span>
+          <span class="reaction r-like" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10h4v11H2zM8 21h9.5a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 19 10h-5l.8-4a2 2 0 0 0-2-2.4L8 10z"/></svg></span>
+          <span class="count">1.2K</span>
+        </div>
+        <div><button type="button">86 comments</button> · <button type="button">14 shares</button></div>
+      </div>
+
+      <div class="post__bar">
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h4v11H2zM8 21h9.3a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 18.7 10H14l.8-4A2 2 0 0 0 12.8 3.6L8 10z"/></svg>
+          <span>Like</span>
+        </button>
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H4l1.6-3.2A8 8 0 1 1 21 12z"/></svg>
+          <span>Comment</span>
+        </button>
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M13 4v4C6.5 8.7 4 13 3.5 20c2.6-3.8 5.4-5.3 9.5-5.3V19l8-7.5z"/></svg>
+          <span>Share</span>
+        </button>
+      </div>
+
+      <div class="comments">
+        <div class="comment">
+          <img class="avatar" src="img/avatar-8.svg" width="32" height="32" alt="" />
+          <div>
+            <div class="comment__bubble">
+              <div class="comment__author">Nimra Fatima</div>
+              <p class="comment__body">These came out great! Send me the originals please.</p>
+            </div>
+            <div class="comment__tools">
+              <button type="button">Like</button><button type="button">Reply</button><span class="time">9 h</span>
+            </div>
+          </div>
+        </div>
+        <div class="comment-box">
+          <img class="avatar" src="img/avatar-1.svg" width="32" height="32" alt="" />
+          <div class="field">
+            <label class="sr-only" for="c2">Write a comment</label>
+            <input id="c2" type="text" placeholder="Write a comment..." />
+            <span class="tools" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01M8.5 14.5c1.8 2 5.2 2 7 0"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m4 17 5-5 4 4 3-2 4 4"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- post 4: plain text status ---------- -->
+    <article class="card post">
+      <header class="post__head">
+        <img class="avatar" src="img/avatar-7.svg" width="40" height="40" alt="" />
+        <div class="post__meta">
+          <a class="post__author" href="#top">Talha Ahmed</a>
+          <div class="post__sub">
+            <span>2 d</span> ·
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c4 4.5 4 13.5 0 18-4-4.5-4-13.5 0-18z"/></svg>
+          </div>
+        </div>
+        <button class="post__more" type="button" aria-label="Post options">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+        </button>
+      </header>
+
+      <div class="status-bg status-bg--warm">
+        Anyone else's code only works<br />when the professor isn't watching?
+      </div>
+
+      <div class="post__stats">
+        <div class="reactions">
+          <span class="reaction r-care" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></span>
+          <span class="reaction r-like" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10h4v11H2zM8 21h9.5a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 19 10h-5l.8-4a2 2 0 0 0-2-2.4L8 10z"/></svg></span>
+          <span class="count">512</span>
+        </div>
+        <div><button type="button">203 comments</button> · <button type="button">48 shares</button></div>
+      </div>
+
+      <div class="post__bar">
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h4v11H2zM8 21h9.3a2 2 0 0 0 2-1.6l1.4-7A2 2 0 0 0 18.7 10H14l.8-4A2 2 0 0 0 12.8 3.6L8 10z"/></svg>
+          <span>Like</span>
+        </button>
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H4l1.6-3.2A8 8 0 1 1 21 12z"/></svg>
+          <span>Comment</span>
+        </button>
+        <button class="post__action" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M13 4v4C6.5 8.7 4 13 3.5 20c2.6-3.8 5.4-5.3 9.5-5.3V19l8-7.5z"/></svg>
+          <span>Share</span>
+        </button>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ------------------------------ RIGHT RAIL ------------------------------ -->
+  <aside class="col col--right" aria-label="Sponsored, birthdays and contacts">
+
+    <div class="rail-head">
+      <h2>Sponsored</h2>
+    </div>
+    <a class="ad" href="#top">
+      <img src="img/ad-1.svg" width="120" height="120" alt="Dummy sponsored image" />
+      <div>
+        <div class="ad__title">Learn Full-Stack Development in 12 Weeks</div>
+        <div class="ad__url">dummy-academy.example</div>
+      </div>
+    </a>
+    <a class="ad" href="#top">
+      <img src="img/ad-2.svg" width="120" height="120" alt="Dummy sponsored image" />
+      <div>
+        <div class="ad__title">Host Your Portfolio Free — No Card Required</div>
+        <div class="ad__url">dummy-hosting.example</div>
+      </div>
+    </a>
+
+    <hr class="rail-sep" />
+
+    <div class="rail-head">
+      <h2>Birthdays</h2>
+    </div>
+    <div class="birthday">
+      <span class="gift" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12"/><path d="M12 9S9 3 6.5 4.5 8.5 9 12 9s5.5-3 3-4.5S12 9 12 9z"/></svg>
+      </span>
+      <p><strong>Zoya Kamal</strong> and <strong>2 others</strong> have birthdays today.</p>
+    </div>
+
+    <hr class="rail-sep" />
+
+    <div class="rail-head">
+      <h2>Contacts</h2>
+      <div class="tools">
+        <button type="button" aria-label="New message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 20h4l10-10-4-4L4 16z"/><path d="m14.5 5.5 4 4"/></svg>
+        </button>
+        <button type="button" aria-label="Search contacts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </button>
+        <button type="button" aria-label="Contacts options">
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav aria-label="Contacts">
+      <a class="contact" href="#top">
+        <span class="pic"><img class="avatar" src="img/avatar-2.svg" width="36" height="36" alt="" /><span class="online" aria-label="Active now"></span></span>
+        <span>Ali Khan</span>
+      </a>
+      <a class="contact" href="#top">
+        <span class="pic"><img class="avatar" src="img/avatar-3.svg" width="36" height="36" alt="" /><span class="online" aria-label="Active now"></span></span>
+        <span>Sara Bilal</span>
+      </a>
+      <a class="contact" href="#top">
+        <span class="pic"><img class="avatar" src="img/avatar-4.svg" width="36" height="36" alt="" /><span class="online away" aria-label="Offline"></span></span>
+        <span>Hamza Raza</span>
+      </a>
+      <a class="contact" href="#top">
+        <span class="pic"><img class="avatar" src="img/avatar-5.svg" width="36" height="36" alt="" /><span class="online" aria-label="Active now"></span></span>
+        <span>Zoya Kamal</span>
+      </a>
+      <a class="contact" href="#top">
+        <span class="pic"><img class="avatar" src="img/avatar-6.svg" width="36" height="36" alt="" /><span class="online away" aria-label="Offline"></span></span>
+        <span>Umar Farooq</span>
+      </a>
+      <a class="contact" href="#top">
+        <span class="pic"><img class="avatar" src="img/avatar-7.svg" width="36" height="36" alt="" /><span class="online" aria-label="Active now"></span></span>
+        <span>Talha Ahmed</span>
+      </a>
+      <a class="contact" href="#top">
+        <span class="pic"><img class="avatar" src="img/avatar-8.svg" width="36" height="36" alt="" /><span class="online away" aria-label="Offline"></span></span>
+        <span>Nimra Fatima</span>
+      </a>
+    </nav>
+
+    <hr class="rail-sep" />
+
+    <div class="rail-head">
+      <h2>Group conversations</h2>
+    </div>
+    <nav aria-label="Group conversations">
+      <a class="contact" href="#top">
+        <span class="pic"><img src="img/story-3.svg" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;" /></span>
+        <span>Full Stack Lab</span>
+      </a>
+      <a class="contact" href="#top">
+        <span class="pic"><img src="img/story-5.svg" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;" /></span>
+        <span>CS '28 Semester Group</span>
+      </a>
+      <a class="contact" href="#top">
+        <span class="pic" style="display:grid;place-items:center;border-radius:50%;background:#e4e6e9;color:#050505;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+        <span>Create new group</span>
+      </a>
+    </nav>
+
+  </aside>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+/* ==========================================================================
+   CYBER-DECK // TERMINAL UI
+   Pure HTML + CSS. No JavaScript. No images.
+   Phosphor theme + CRT FX are switched with hidden radio/checkbox inputs.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TOKENS  —  colour == system state, not brand hierarchy
+   -------------------------------------------------------------------------- */
+:root{
+  --black:   #000000;
+  --panel:   #060a07;
+  --char:    #121212;
+
+  --fg:      #00ff66;   /* P1 phosphor — default terminal output           */
+  --fg-dim:  #0b8f3d;   /* decayed phosphor — labels, rules, inactive      */
+  --fg-deep: #05391c;   /* burn-in ghost — grid lines, empty meter track   */
+
+  --amber:   #ff6600;   /* P3 phosphor — warnings, key variables           */
+  --cyan:    #00e5ff;   /* network / memory addresses                      */
+  --magenta: #ff0055;   /* critical alert                                  */
+
+  --glow:    0 0 5px currentColor;
+  --mono:    "JetBrains Mono", "Fira Code", "Share Tech Mono", ui-monospace, Consolas, "Courier New", monospace;
+  --display: "Share Tech Mono", "VT323", var(--mono);
+
+  --fs:      13px;      /* data density: 12–14px                            */
+  --row:     22px;      /* character-cell row height                        */
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET
+   -------------------------------------------------------------------------- */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--fg);
+  font-family:var(--mono);
+  font-size:var(--fs);
+  line-height:var(--row);
+  letter-spacing:.02em;
+  text-shadow:var(--glow);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{ margin:0; font-size:inherit; font-weight:400; font-family:var(--display); }
+p{ margin:0; }
+ul{ margin:0; padding:0; list-style:none; }
+a{ color:inherit; text-decoration:none; }
+table{ border-collapse:collapse; width:100%; }
+button{ font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; text-shadow:inherit; }
+input,select{ font:inherit; }
+pre{ margin:0; font-family:var(--mono); }
+
+/* keyboard focus must stay loud on a dense screen */
+:focus-visible{ outline:2px solid var(--amber); outline-offset:2px; }
+
+.sr-only{
+  position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+/* every bracket, rule and block glyph is decoration: keep it out of the AT tree */
+[aria-hidden="true"]{ speak:none; }
+
+/* --------------------------------------------------------------------------
+   3. PHOSPHOR SELECTOR  —  hidden inputs drive the palette (CSS only)
+   -------------------------------------------------------------------------- */
+.sys-input{ position:absolute; opacity:0; pointer-events:none; }
+
+#p-amber:checked ~ .deck{
+  --fg:#ff9a3c; --fg-dim:#b35a00; --fg-deep:#3a1c00; --amber:#ffd166; --panel:#0a0703;
+}
+#p-cyan:checked ~ .deck{
+  --fg:#00e5ff; --fg-dim:#0a7f8f; --fg-deep:#03303a; --amber:#ff6600; --panel:#03080a;
+}
+
+/* CRT hardware emulation, defeatable for eye-strain / reduced motion */
+#fx:not(:checked) ~ .deck .crt{ display:none; }
+#fx:not(:checked) ~ .deck{ text-shadow:none; }
+
+/* --------------------------------------------------------------------------
+   4. HARDWARE EMULATION OVERLAYS
+   -------------------------------------------------------------------------- */
+.crt{ position:fixed; inset:0; z-index:900; pointer-events:none; }
+
+/* cathode-ray scan pattern */
+.crt--scan{
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,.28) 0px,
+    rgba(0,0,0,.28) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  animation:scan-drift 9s linear infinite;
+}
+@keyframes scan-drift{ from{ background-position:0 0; } to{ background-position:0 120px; } }
+
+/* rolling refresh band + phosphor flicker */
+.crt--roll{
+  background:linear-gradient(to bottom,transparent 0%,rgba(255,255,255,.035) 48%,transparent 100%);
+  background-size:100% 220px; background-repeat:no-repeat;
+  animation:roll 7s linear infinite, flicker 3.2s steps(12) infinite;
+}
+@keyframes roll{ from{ background-position:0 -260px; } to{ background-position:0 110vh; } }
+@keyframes flicker{ 0%,100%{ opacity:.9; } 48%{ opacity:.72; } 52%{ opacity:1; } }
+
+/* glass curvature: corner falloff + vignette */
+.crt--glass{
+  background:radial-gradient(120% 120% at 50% 50%,transparent 55%,rgba(0,0,0,.55) 88%,rgba(0,0,0,.9) 100%);
+  box-shadow:inset 0 0 160px rgba(0,0,0,.9), inset 0 0 40px rgba(0,0,0,.6);
+  border-radius:14px;
+}
+
+/* --------------------------------------------------------------------------
+   5. SHELL
+   -------------------------------------------------------------------------- */
+.deck{
+  min-height:100vh;
+  /* microscopic pixel grid */
+  background-color:var(--black);
+  background-image:
+    radial-gradient(circle, var(--fg-deep) .5px, transparent .6px),
+    linear-gradient(transparent 21px, rgba(0,255,102,.025) 22px);
+  background-size:4px 4px, 100% 22px;
+  padding-bottom:40px;
+}
+
+/* ---- system header ---- */
+.sysbar{
+  position:sticky; top:0; z-index:80;
+  display:flex; flex-wrap:wrap; align-items:center; gap:0 18px;
+  padding:8px 16px;
+  background:rgba(0,0,0,.92);
+  border-bottom:1px solid var(--fg-dim);
+  backdrop-filter:blur(2px);
+}
+.sysbar__id{ color:var(--fg); font-family:var(--display); letter-spacing:.06em; }
+.sysbar__id b{ font-weight:400; color:var(--amber); }
+.sysbar__stat{ color:var(--fg-dim); }
+.sysbar__stat b{ font-weight:400; color:var(--fg); }
+.sysbar__nav{ display:flex; gap:14px; margin-left:auto; flex-wrap:wrap; }
+.sysbar__nav a{ color:var(--fg-dim); }
+.sysbar__nav a:hover,
+.sysbar__nav a:focus-visible{ color:var(--black); background:var(--fg); text-shadow:none; }
+.sysbar__nav a[aria-current="page"]{ color:var(--fg); }
+
+/* ---- 3-column deck ---- */
+.grid{
+  display:grid;
+  grid-template-columns:20ch minmax(0,1fr) 30ch;
+  gap:12px; padding:12px 16px;
+  max-width:1500px; margin:0 auto;
+  align-items:start;
+}
+.rail{ position:sticky; top:52px; display:grid; gap:12px; }
+.main{ display:grid; gap:12px; min-width:0; max-width:96ch; }
+
+/* --------------------------------------------------------------------------
+   6. PANEL  —  ASCII-framed box
+   -------------------------------------------------------------------------- */
+.panel{
+  position:relative;
+  border:1px solid var(--fg-dim);
+  background:var(--panel);
+  padding:14px 12px 12px;
+}
+.panel::before,.panel::after{
+  position:absolute; color:var(--fg-dim); font-size:11px; line-height:1;
+  text-shadow:none;
+}
+.panel::before{ content:"+"; top:-6px; left:-4px; }
+.panel::after{ content:"+"; bottom:-6px; right:-4px; }
+.panel__title{
+  position:absolute; top:-11px; left:10px;
+  padding:0 6px; background:var(--panel);
+  color:var(--amber); font-family:var(--display); letter-spacing:.08em;
+}
+.panel__title::before{ content:"[ "; } .panel__title::after{ content:" ]"; }
+.panel__meta{ float:right; color:var(--fg-dim); }
+.panel--alert{ border:1px double var(--amber); }
+.panel--crit{ border:1px double var(--magenta); color:var(--magenta); }
+
+.rule{ border:0; border-top:1px dashed var(--fg-deep); margin:10px 0; }
+.dim{ color:var(--fg-dim); }
+.hot{ color:var(--amber); }
+.net{ color:var(--cyan); }
+.crit{ color:var(--magenta); }
+
+/* --------------------------------------------------------------------------
+   7. TEXT CONTROLS
+   -------------------------------------------------------------------------- */
+.btn{
+  display:inline-block; padding:1px 4px; color:var(--fg);
+  border:1px solid transparent; white-space:nowrap;
+  transition:background-color .08s steps(1), color .08s steps(1);
+}
+.btn::before{ content:"[ "; } .btn::after{ content:" ]"; }
+.btn:hover,.btn:focus-visible{ background:var(--fg); color:var(--black); text-shadow:none; }
+.btn--hot{ color:var(--amber); }
+.btn--hot:hover,.btn--hot:focus-visible{ background:var(--amber); color:var(--black); }
+.btn--crit{ color:var(--magenta); }
+.btn--crit:hover,.btn--crit:focus-visible{ background:var(--magenta); color:var(--black); }
+.btn--exec::before{ content:"< "; } .btn--exec::after{ content:" >"; }
+.btn-row{ display:flex; flex-wrap:wrap; gap:10px; }
+
+/* checkbox / radio rendered as text markers */
+.opt{ display:flex; align-items:center; gap:8px; cursor:pointer; color:var(--fg-dim); }
+.opt input{ position:absolute; opacity:0; width:0; height:0; }
+.opt .mark::before{ content:"[ ]"; color:var(--fg-dim); }
+.opt input:checked ~ .mark::before{ content:"[*]"; color:var(--fg); }
+.opt input[type="radio"] ~ .mark::before{ content:"( )"; }
+.opt input[type="radio"]:checked ~ .mark::before{ content:"(o)"; color:var(--fg); }
+.opt input:checked ~ .txt{ color:var(--fg); }
+.opt:hover .txt{ color:var(--fg); }
+.opt input:focus-visible ~ .mark::before{ outline:1px solid var(--amber); }
+
+/* phosphor / FX switch row in the header */
+.switches{ display:flex; gap:12px; flex-wrap:wrap; color:var(--fg-dim); }
+.switches label{ cursor:pointer; }
+.switches label:hover{ color:var(--fg); }
+#p-green:checked ~ .deck label[for="p-green"],
+#p-amber:checked ~ .deck label[for="p-amber"],
+#p-cyan:checked  ~ .deck label[for="p-cyan"]{ color:var(--black); background:var(--fg); text-shadow:none; }
+#fx:checked ~ .deck label[for="fx"]::before{ content:"[*] "; }
+#fx:not(:checked) ~ .deck label[for="fx"]::before{ content:"[ ] "; }
+
+/* status indicator :: KEY: VALUE :: */
+.ind{ color:var(--fg-dim); }
+.ind::before{ content:":: "; } .ind::after{ content:" ::"; }
+.ind b{ font-weight:400; color:var(--fg); }
+.ind--warn b{ color:var(--amber); }
+.ind--down b{ color:var(--magenta); }
+
+/* --------------------------------------------------------------------------
+   8. CURSOR + TERMINAL STREAM
+   -------------------------------------------------------------------------- */
+.cursor{ display:inline-block; animation:blink 1s steps(2,start) infinite; }
+.cursor--bar::after{ content:"\2588"; }   /* █ */
+.cursor--us::after{ content:"_"; }
+@keyframes blink{ to{ visibility:hidden; } }
+
+.stream{ display:grid; gap:0; font-size:12.5px; }
+.stream li{ display:grid; grid-template-columns:9ch 7ch minmax(0,1fr); gap:8px; }
+.stream .t{ color:var(--fg-deep); }
+.stream .lvl{ color:var(--fg-dim); }
+.stream .lvl--ok{ color:var(--fg); }
+.stream .lvl--warn{ color:var(--amber); }
+.stream .lvl--err{ color:var(--magenta); }
+.stream .lvl--net{ color:var(--cyan); }
+.stream li:hover{ background:var(--fg-deep); }
+
+.prompt{ display:flex; gap:8px; margin-top:8px; align-items:baseline; }
+.prompt .ps1{ color:var(--amber); white-space:nowrap; }
+.prompt input{
+  flex:1; min-width:0; border:0; background:none; outline:none;
+  color:var(--fg); text-shadow:var(--glow); caret-color:var(--fg);
+}
+.prompt input::placeholder{ color:var(--fg-deep); }
+
+/* --------------------------------------------------------------------------
+   9. METERS  —  ASCII bar graphs
+   -------------------------------------------------------------------------- */
+.meter{ display:grid; grid-template-columns:8ch minmax(0,1fr) 6ch; gap:8px; align-items:center; }
+.meter + .meter{ margin-top:2px; }
+.meter__label{ color:var(--fg-dim); }
+.meter__bar{ position:relative; overflow:hidden; white-space:nowrap; color:var(--fg-deep); }
+.meter__fill{
+  position:absolute; inset:0; overflow:hidden; white-space:nowrap;
+  color:var(--fg); width:0;
+  animation:fill 2.4s steps(20) forwards;
+}
+.meter__val{ text-align:right; color:var(--fg); }
+@keyframes fill{ from{ width:0; } to{ width:var(--pct,50%); } }
+.meter--warn .meter__fill,.meter--warn .meter__val{ color:var(--amber); }
+.meter--crit .meter__fill,.meter--crit .meter__val{ color:var(--magenta); }
+.meter--net  .meter__fill,.meter--net  .meter__val{ color:var(--cyan); }
+
+/* spinner: 4 frames, one visible per step */
+.spin{ display:inline-grid; width:3ch; }
+.spin span{ grid-area:1/1; opacity:0; animation:frame .8s steps(1) infinite; }
+.spin span:nth-child(2){ animation-delay:.2s; }
+.spin span:nth-child(3){ animation-delay:.4s; }
+.spin span:nth-child(4){ animation-delay:.6s; }
+@keyframes frame{ 0%,24.9%{ opacity:1; } 25%,100%{ opacity:0; } }
+
+/* --------------------------------------------------------------------------
+   10. DATA TABLE
+   -------------------------------------------------------------------------- */
+.tbl{ font-size:12.5px; }
+.tbl caption{ text-align:left; color:var(--fg-dim); padding-bottom:6px; }
+.tbl th{
+  text-align:left; font-weight:400; color:var(--amber);
+  border-bottom:1px solid var(--fg-dim); padding:2px 8px 2px 0; white-space:nowrap;
+}
+.tbl td{ padding:1px 8px 1px 0; border-bottom:1px dotted var(--fg-deep); white-space:nowrap; }
+.tbl tbody tr:hover td{ background:var(--fg); color:var(--black); text-shadow:none; }
+.tbl .num{ text-align:right; }
+
+/* --------------------------------------------------------------------------
+   11. ALERTS
+   -------------------------------------------------------------------------- */
+.alert{ padding:6px 10px; margin-top:8px; }
+.alert--warn{ border:1px double var(--amber); color:var(--amber); }
+.alert--crit{ border:1px double var(--magenta); color:var(--magenta); }
+.alert--ok{ border:1px solid var(--fg-dim); color:var(--fg); }
+.alert code{ font-family:inherit; }
+
+/* --------------------------------------------------------------------------
+   12. NODE MAP / ASCII ART
+   -------------------------------------------------------------------------- */
+.art{
+  color:var(--fg-dim); font-size:12px; line-height:1.25;
+  overflow-x:auto; padding:4px 0;
+}
+.art b{ font-weight:400; color:var(--fg); }
+.art i{ font-style:normal; color:var(--cyan); }
+
+/* --------------------------------------------------------------------------
+   13. MODAL  —  :target, no script
+   -------------------------------------------------------------------------- */
+.modal{
+  position:fixed; inset:0; z-index:950;
+  display:grid; place-items:center; padding:16px;
+  background:rgba(0,0,0,.86);
+  visibility:hidden; opacity:0;
+  transition:opacity .1s steps(2);
+}
+.modal:target{ visibility:visible; opacity:1; }
+.modal__box{
+  width:min(64ch,100%); background:var(--panel);
+  border:1px double var(--fg); padding:0;
+  box-shadow:0 0 40px rgba(0,255,102,.12);
+}
+.modal__bar{
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  padding:4px 8px; border-bottom:1px solid var(--fg-dim); color:var(--amber);
+}
+.modal__body{ padding:12px; }
+.modal__body p + p{ margin-top:8px; }
+.modal__foot{ padding:8px 12px; border-top:1px dashed var(--fg-deep); display:flex; gap:12px; flex-wrap:wrap; }
+
+/* --------------------------------------------------------------------------
+   14. FOOTER STATUS LINE
+   -------------------------------------------------------------------------- */
+.statusline{
+  position:fixed; inset:auto 0 0 0; z-index:80;
+  display:flex; flex-wrap:wrap; gap:0 16px; align-items:center;
+  padding:3px 16px;
+  background:var(--fg); color:var(--black);
+  text-shadow:none; font-size:12px;
+}
+.statusline b{ font-weight:400; }
+.statusline .push{ margin-left:auto; }
+
+/* --------------------------------------------------------------------------
+   15. RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width:1180px){
+  .grid{ grid-template-columns:18ch minmax(0,1fr); }
+  .rail--right{ display:none; }
+}
+@media (max-width:820px){
+  .grid{ grid-template-columns:minmax(0,1fr); padding:10px; }
+  .rail--left{ position:static; }
+  .sysbar{ gap:0 10px; }
+  .sysbar__nav{ width:100%; margin-left:0; }
+  .stream li{ grid-template-columns:8ch minmax(0,1fr); }
+  .stream .lvl{ display:none; }
+}
+@media (max-width:520px){
+  :root{ --fs:12px; }
+  .sysbar__stat{ display:none; }
+  .meter{ grid-template-columns:7ch minmax(0,1fr) 5ch; }
+  .statusline .push{ margin-left:0; }
+}
+
+/* --------------------------------------------------------------------------
+   16. MOTION / PRINT
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition:none !important; }
+  .meter__fill{ width:var(--pct,50%); }
+  .crt--roll,.crt--scan{ display:none; }
+}
+@media print{
+  body{ background:#fff; color:#000; text-shadow:none; }
+  .crt,.statusline,.sysbar{ display:none; }
+  .panel{ border-color:#000; background:#fff; }
+}
