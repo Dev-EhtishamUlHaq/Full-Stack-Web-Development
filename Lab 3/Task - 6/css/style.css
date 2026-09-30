@@ -1,0 +1,117 @@
+/* ==========================================================================
+   ShopNest — theme layer on top of Bootstrap 5.3
+   Almost everything is Bootstrap components + utilities in the markup.
+   This file only sets the brand colour (through Bootstrap's own CSS
+   variables) and a few visuals Bootstrap has no class for.
+   ========================================================================== */
+
+:root{
+  --brand:       #5b21b6;
+  --brand-rgb:   91,33,182;
+  --brand-dark:  #4c1d95;
+  --brand-soft:  #ede9fe;
+
+  --bs-primary:            var(--brand);
+  --bs-primary-rgb:        var(--brand-rgb);
+  --bs-primary-text-emphasis: var(--brand-dark);
+  --bs-primary-bg-subtle:  var(--brand-soft);
+  --bs-link-color:         var(--brand);
+  --bs-link-color-rgb:     var(--brand-rgb);
+  --bs-link-hover-color:   var(--brand-dark);
+  --bs-link-hover-color-rgb: 76,29,149;
+  --bs-body-font-family:   "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-body-bg:            #f8f7fc;
+  --bs-focus-ring-color:   rgba(var(--brand-rgb), .25);
+}
+
+/* Bootstrap buttons / pills / forms re-pointed at the brand colour */
+.btn-primary{
+  --bs-btn-bg:var(--brand); --bs-btn-border-color:var(--brand);
+  --bs-btn-hover-bg:var(--brand-dark); --bs-btn-hover-border-color:var(--brand-dark);
+  --bs-btn-active-bg:var(--brand-dark); --bs-btn-active-border-color:var(--brand-dark);
+  --bs-btn-disabled-bg:var(--brand); --bs-btn-disabled-border-color:var(--brand);
+  --bs-btn-focus-shadow-rgb:var(--brand-rgb);
+}
+.btn-outline-primary{
+  --bs-btn-color:var(--brand); --bs-btn-border-color:var(--brand);
+  --bs-btn-hover-bg:var(--brand); --bs-btn-hover-border-color:var(--brand);
+  --bs-btn-active-bg:var(--brand); --bs-btn-active-border-color:var(--brand);
+  --bs-btn-focus-shadow-rgb:var(--brand-rgb);
+}
+.nav-pills{ --bs-nav-pills-link-active-bg:var(--brand); }
+.nav-link{ --bs-nav-link-color:var(--bs-body-color); --bs-nav-link-hover-color:var(--brand); }
+.nav-underline{ --bs-nav-underline-link-active-color:var(--brand); }
+.form-control:focus, .form-select:focus{ border-color:rgba(var(--brand-rgb),.5); box-shadow:0 0 0 .25rem rgba(var(--brand-rgb),.2); }
+.form-check-input:checked{ background-color:var(--brand); border-color:var(--brand); }
+.progress{ --bs-progress-bar-bg:var(--brand); }
+.dropdown-menu{ --bs-dropdown-link-active-bg:var(--brand); }
+
+/* ---------------- brand bits ---------------- */
+.brand-mark{
+  width:2.25rem; height:2.25rem;
+  background:linear-gradient(135deg,var(--brand),#db2777);
+}
+.avatar{ width:1.75rem; height:1.75rem; font-size:.85rem; }
+
+/* ---------------- hero ---------------- */
+.hero{
+  background:
+    radial-gradient(900px 400px at 85% 20%, rgba(219,39,119,.25), transparent 60%),
+    radial-gradient(700px 400px at 10% 90%, rgba(14,165,233,.25), transparent 60%),
+    linear-gradient(135deg,#1e1b4b 0%,#3b0764 55%,#4c1d95 100%);
+}
+.hero .carousel-item{ min-height:26rem; }
+.hero-visual{
+  width:min(22rem,80vw); aspect-ratio:1;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(6px);
+  font-size:clamp(6rem,14vw,10rem);
+}
+.hero-visual .bi{ filter:drop-shadow(0 20px 30px rgba(0,0,0,.35)); }
+.floating-chip{ animation:float 4s ease-in-out infinite; }
+.floating-chip:nth-of-type(2){ animation-delay:-2s; }
+@keyframes float{ 50%{ transform:translateY(-10px); } }
+
+/* ---------------- product visuals ---------------- */
+.product-thumb{
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  font-size:4rem;
+  border-radius:var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0 0;
+}
+.product-thumb .bi{ filter:drop-shadow(0 10px 18px rgba(0,0,0,.25)); transition:transform .3s ease; }
+.product-card .product-thumb{ border-radius:var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0; }
+.product-thumb.thumb-sm{ width:3.5rem; height:3.5rem; aspect-ratio:auto; font-size:1.5rem; border-radius:var(--bs-border-radius); flex:none; }
+.product-thumb.thumb-lg{ aspect-ratio:1; font-size:8rem; border-radius:var(--bs-border-radius-lg); }
+
+.product-card{ transition:transform .2s ease, box-shadow .2s ease; }
+.product-card:hover{ transform:translateY(-4px); box-shadow:var(--bs-box-shadow) !important; }
+.product-card:hover .product-thumb .bi{ transform:scale(1.1) rotate(-4deg); }
+.quick-view{ width:2.25rem; height:2.25rem; }
+
+.stars .bi{ margin-right:1px; }
+
+/* ---------------- feature strip / icons ---------------- */
+.icon-box{ width:3rem; height:3rem; font-size:1.35rem; }
+
+/* ---------------- cart ---------------- */
+.qty-group{ width:7.5rem; }
+.qty-group input::-webkit-outer-spin-button,
+.qty-group input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+.qty-group input{ -moz-appearance:textfield; }
+
+/* ---------------- auth pages ---------------- */
+.auth-aside{
+  background:
+    radial-gradient(500px 300px at 80% 10%, rgba(219,39,119,.35), transparent 60%),
+    linear-gradient(160deg,#1e1b4b,#4c1d95);
+}
+
+/* ---------------- footer ---------------- */
+.site-footer{ background:#15112b; }
+.site-footer a{ color:rgba(255,255,255,.65); text-decoration:none; }
+.site-footer a:hover{ color:#fff; }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition:none !important; }
+}

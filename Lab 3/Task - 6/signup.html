@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign up — ShopNest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- ============================== NAVBAR ============================== -->
+<nav class="navbar navbar-expand-lg bg-white sticky-top border-bottom shadow-sm py-2">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+      <span class="brand-mark rounded-3 text-white d-inline-flex align-items-center justify-content-center"><i class="bi bi-bag-heart-fill"></i></span>
+      ShopNest
+    </a>
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="btn btn-outline-primary position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-controls="cartDrawer" aria-label="Open cart">
+        <i class="bi bi-cart3"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">4</span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        <li class="nav-item"><a class="nav-link fw-medium" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="index.html#products">Shop</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="index.html#reviews">Reviews</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="cart.html">Cart</a></li>
+      </ul>
+      <form class="d-flex me-lg-3 mb-2 mb-lg-0" role="search" action="index.html#products">
+        <div class="input-group">
+          <span class="input-group-text bg-body-tertiary border-end-0"><i class="bi bi-search"></i></span>
+          <input class="form-control bg-body-tertiary border-start-0" type="search" name="q" placeholder="Search products" aria-label="Search products">
+        </div>
+      </form>
+      <div class="d-flex align-items-center gap-2 me-lg-2 mb-2 mb-lg-0">
+        <a class="btn btn-outline-primary" href="login.html"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a>
+        <a class="btn btn-primary" href="signup.html">Sign up</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="flex-grow-1 d-flex align-items-center py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+          <div class="row g-0">
+
+            <div class="col-lg-7 bg-white p-4 p-md-5 order-2 order-lg-1">
+              <h1 class="h3 fw-bold mb-1">Create your account</h1>
+              <p class="text-body-secondary mb-4">Already a member? <a href="login.html" class="fw-semibold">Log in</a></p>
+
+              <form class="row g-3" action="index.html">
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="signupName" placeholder="Full name" autocomplete="name" required minlength="3" maxlength="40">
+                    <label for="signupName"><i class="bi bi-person me-2"></i>Full name</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="email" class="form-control" id="signupEmail" placeholder="name@example.com" autocomplete="email" required>
+                    <label for="signupEmail"><i class="bi bi-envelope me-2"></i>Email address</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div>
+                    <div class="form-floating">
+                      <input type="password" class="form-control" id="signupPassword" placeholder="Password" autocomplete="new-password" required minlength="8">
+                      <label for="signupPassword"><i class="bi bi-lock me-2"></i>Password</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="signupConfirm" placeholder="Confirm password" autocomplete="new-password" required>
+                    <label for="signupConfirm"><i class="bi bi-lock-fill me-2"></i>Confirm password</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-text"><i class="bi bi-info-circle me-1"></i>Use 8+ characters with upper &amp; lower case, a number and a symbol.</div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="signupTerms" required>
+                    <label class="form-check-label" for="signupTerms">I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms &amp; Privacy Policy</a></label>
+                  </div>
+                  <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="signupNews" checked>
+                    <label class="form-check-label" for="signupNews">Send me deals and new arrivals</label>
+                  </div>
+                </div>
+                <div class="col-12 d-grid">
+                  <button class="btn btn-primary btn-lg" type="submit"><i class="bi bi-person-plus me-2"></i>Create account</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-lg-5 auth-aside text-white d-none d-lg-flex flex-column justify-content-center p-5 order-lg-2">
+              <h2 class="fw-bold display-6">Join ShopNest</h2>
+              <p class="text-white-50 mb-4">Create a free account and get an extra 15% off with code <span class="badge text-bg-warning">STUDENT15</span>.</p>
+              <div class="card bg-white bg-opacity-10 border-0 text-white">
+                <div class="card-body">
+                  <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                  <p class="small mb-2">"Signing up took ten seconds and checkout remembers my details every time."</p>
+                  <div class="small fw-semibold">— Nimra Fatima</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- terms -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="termsModalLabel">Terms &amp; Privacy</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body small">
+        <p>ShopNest is a coursework demo. Your account is saved only in this browser's local storage, with the password stored as a SHA-256 hash. Nothing is sent to a server.</p>
+        <p>Orders are simulated. No payment is processed and nothing is shipped.</p>
+        <p class="mb-0">Clearing your browser data removes your account, cart and orders.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer text-white-50 py-4">
+  <div class="container d-flex flex-wrap justify-content-between gap-2 small">
+    <span>&copy; 2026 ShopNest. Demo store — accounts are saved only in this browser.</span>
+    <span><a href="index.html">Home</a> · <a href="login.html">Login</a></span>
+  </div>
+</footer>
+
+<!-- ============================== CART DRAWER ============================== -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title" id="cartDrawerLabel"><i class="bi bi-bag me-2"></i>Your Cart <span class="badge rounded-pill text-bg-primary">4</span></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+    <div class="alert alert-success small py-2"><i class="bi bi-check-circle me-1"></i>Item added to your cart.</div>
+    <ul class="list-group list-group-flush flex-grow-1">
+      <li class="list-group-item px-0 d-flex align-items-center gap-3">
+        <div class="product-thumb thumb-sm d-flex align-items-center justify-content-center text-white" style="--c1:#6d28d9;--c2:#db2777" aria-hidden="true"><i class="bi bi-headphones"></i></div>
+        <div class="flex-grow-1 small">
+          <div class="fw-semibold">AuraBeat Wireless Headphones</div>
+          <div class="text-body-secondary">2 × $89.99</div>
+        </div>
+        <a href="cart.html" class="btn btn-sm btn-outline-danger border-0" aria-label="Remove AuraBeat Wireless Headphones"><i class="bi bi-trash"></i></a>
+      </li>
+      <li class="list-group-item px-0 d-flex align-items-center gap-3">
+        <div class="product-thumb thumb-sm d-flex align-items-center justify-content-center text-white" style="--c1:#1e293b;--c2:#7c3aed" aria-hidden="true"><i class="bi bi-keyboard"></i></div>
+        <div class="flex-grow-1 small">
+          <div class="fw-semibold">TypeMaster Mechanical Keyboard</div>
+          <div class="text-body-secondary">1 × $74.50</div>
+        </div>
+        <a href="cart.html" class="btn btn-sm btn-outline-danger border-0" aria-label="Remove TypeMaster Mechanical Keyboard"><i class="bi bi-trash"></i></a>
+      </li>
+      <li class="list-group-item px-0 d-flex align-items-center gap-3">
+        <div class="product-thumb thumb-sm d-flex align-items-center justify-content-center text-white" style="--c1:#0891b2;--c2:#4f46e5" aria-hidden="true"><i class="bi bi-webcam"></i></div>
+        <div class="flex-grow-1 small">
+          <div class="fw-semibold">StreamCam HD Webcam</div>
+          <div class="text-body-secondary">1 × $59.00</div>
+        </div>
+        <a href="cart.html" class="btn btn-sm btn-outline-danger border-0" aria-label="Remove StreamCam HD Webcam"><i class="bi bi-trash"></i></a>
+      </li>
+    </ul>
+    <div class="border-top pt-3 mt-3">
+      <div class="d-flex justify-content-between fw-semibold mb-3"><span>Subtotal</span><span>$313.48</span></div>
+      <div class="d-grid gap-2">
+        <a href="cart.html" class="btn btn-outline-primary">View &amp; edit cart</a>
+        <a href="checkout.html" class="btn btn-primary">Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

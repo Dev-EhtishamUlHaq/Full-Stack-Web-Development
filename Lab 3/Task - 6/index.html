@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShopNest — Gadgets &amp; Electronics</title>
+<meta name="description" content="ShopNest e-commerce store built with Bootstrap 5: product listing, reviews, cart and checkout.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================== NAVBAR ============================== -->
+<nav class="navbar navbar-expand-lg bg-white sticky-top border-bottom shadow-sm py-2">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+      <span class="brand-mark rounded-3 text-white d-inline-flex align-items-center justify-content-center"><i class="bi bi-bag-heart-fill"></i></span>
+      ShopNest
+    </a>
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="btn btn-outline-primary position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-controls="cartDrawer" aria-label="Open cart">
+        <i class="bi bi-cart3"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">4</span>
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        <li class="nav-item"><a class="nav-link active fw-medium" aria-current="page" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="#products">Shop</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="#reviews">Reviews</a></li>
+        <li class="nav-item"><a class="nav-link fw-medium" href="cart.html">Cart</a></li>
+      </ul>
+      <form class="d-flex me-lg-3 mb-2 mb-lg-0" role="search" action="index.html#products">
+        <div class="input-group">
+          <span class="input-group-text bg-body-tertiary border-end-0"><i class="bi bi-search"></i></span>
+          <input class="form-control bg-body-tertiary border-start-0" type="search" name="q" placeholder="Search products" aria-label="Search products">
+        </div>
+      </form>
+      <div class="d-flex align-items-center gap-2 me-lg-2 mb-2 mb-lg-0">
+        <a class="btn btn-outline-primary" href="login.html"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a>
+        <a class="btn btn-primary" href="signup.html">Sign up</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero text-white">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000">
+      <div class="carousel-indicators mb-4">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <div class="container py-5">
+            <div class="row align-items-center g-5 py-lg-4">
+              <div class="col-lg-6 text-center text-lg-start">
+                <span class="badge rounded-pill text-bg-light text-primary px-3 py-2 mb-3"><i class="bi bi-lightning-charge-fill me-1"></i>Autumn Tech Sale — up to 25% off</span>
+                <h1 class="display-4 fw-bold lh-sm mb-3">Gadgets you'll love, <span class="text-warning">prices you'll love more.</span></h1>
+                <p class="lead text-white-50 mb-4">Headphones, laptops, phones and more — shipped free on orders over $100 with 30-day easy returns.</p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                  <a href="#products" class="btn btn-warning btn-lg px-4 fw-semibold"><i class="bi bi-bag me-2"></i>Shop now</a>
+                  <a href="#reviews" class="btn btn-outline-light btn-lg px-4">See reviews</a>
+                </div>
+                <div class="d-flex gap-4 mt-4 justify-content-center justify-content-lg-start small text-white-50">
+                  <span><i class="bi bi-truck me-1"></i>Free shipping</span>
+                  <span><i class="bi bi-shield-check me-1"></i>2-year warranty</span>
+                </div>
+              </div>
+              <div class="col-lg-6 d-none d-lg-flex justify-content-center position-relative">
+                <div class="hero-visual rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-headphones"></i></div>
+                <div class="floating-chip card border-0 shadow position-absolute top-0 start-0 ms-5 mt-4">
+                  <div class="card-body py-2 px-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-star-fill text-warning"></i><span class="small fw-semibold text-body">4.8 rated</span>
+                  </div>
+                </div>
+                <div class="floating-chip card border-0 shadow position-absolute bottom-0 end-0 me-5 mb-4">
+                  <div class="card-body py-2 px-3">
+                    <div class="small text-body-secondary">AuraBeat</div>
+                    <div class="fw-bold text-primary">$89.99</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="container py-5">
+            <div class="row align-items-center g-5 py-lg-4">
+              <div class="col-lg-6 text-center text-lg-start">
+                <span class="badge rounded-pill text-bg-light text-primary px-3 py-2 mb-3"><i class="bi bi-laptop me-1"></i>New season laptops</span>
+                <h1 class="display-4 fw-bold lh-sm mb-3">Work, study &amp; create — <span class="text-info">anywhere.</span></h1>
+                <p class="lead text-white-50 mb-4">The Nimbus 14 Ultrabook is now $100 off. Featherweight, all-day battery, seriously fast.</p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                  <a href="#products" class="btn btn-warning btn-lg px-4 fw-semibold">Browse computers</a>
+                </div>
+              </div>
+              <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+                <div class="hero-visual rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-laptop"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="container py-5">
+            <div class="row align-items-center g-5 py-lg-4">
+              <div class="col-lg-6 text-center text-lg-start">
+                <span class="badge rounded-pill text-bg-light text-primary px-3 py-2 mb-3"><i class="bi bi-ticket-perforated me-1"></i>Student offer</span>
+                <h1 class="display-4 fw-bold lh-sm mb-3">Extra 15% off with code <span class="text-warning">STUDENT15</span></h1>
+                <p class="lead text-white-50 mb-4">Apply it in your cart. Stacks with sale prices on every product in the store.</p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                  <a href="signup.html" class="btn btn-warning btn-lg px-4 fw-semibold">Create free account</a>
+                  <a href="#products" class="btn btn-outline-light btn-lg px-4">Start shopping</a>
+                </div>
+              </div>
+              <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+                <div class="hero-visual rounded-circle d-flex align-items-center justify-content-center"><i class="bi bi-mortarboard"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FEATURES ============================== -->
+  <section class="bg-white border-bottom">
+    <div class="container py-4">
+      <div class="row row-cols-2 row-cols-lg-4 g-4">
+        <div class="col d-flex align-items-center gap-3">
+          <div class="icon-box rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center flex-shrink-0"><i class="bi bi-truck"></i></div>
+          <div><div class="fw-semibold">Free Shipping</div><div class="small text-body-secondary">On orders over $100</div></div>
+        </div>
+        <div class="col d-flex align-items-center gap-3">
+          <div class="icon-box rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center flex-shrink-0"><i class="bi bi-shield-lock"></i></div>
+          <div><div class="fw-semibold">Secure Payment</div><div class="small text-body-secondary">256-bit encryption</div></div>
+        </div>
+        <div class="col d-flex align-items-center gap-3">
+          <div class="icon-box rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center flex-shrink-0"><i class="bi bi-arrow-repeat"></i></div>
+          <div><div class="fw-semibold">Easy Returns</div><div class="small text-body-secondary">30-day guarantee</div></div>
+        </div>
+        <div class="col d-flex align-items-center gap-3">
+          <div class="icon-box rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center flex-shrink-0"><i class="bi bi-headset"></i></div>
+          <div><div class="fw-semibold">24/7 Support</div><div class="small text-body-secondary">We're here to help</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PRODUCT LISTING ============================== -->
+  <section class="py-5" id="products">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
+        <div>
+          <span class="text-primary fw-semibold text-uppercase small">Our collection</span>
+          <h2 class="fw-bold mb-0">Featured Products</h2>
+        </div>
+        <span class="badge text-bg-light border fs-6 fw-normal">12 products</span>
+      </div>
+
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <div class="row g-3 align-items-center">
+            <div class="col-lg-7">
+              <div class="d-flex flex-wrap gap-2" role="group" aria-label="Filter by category">
+                <input type="radio" class="btn-check" name="category" id="cat-0" checked>
+                <label class="btn btn-outline-primary rounded-pill" for="cat-0">All</label>
+                <input type="radio" class="btn-check" name="category" id="cat-1" >
+                <label class="btn btn-outline-primary rounded-pill" for="cat-1">Audio</label>
+                <input type="radio" class="btn-check" name="category" id="cat-2" >
+                <label class="btn btn-outline-primary rounded-pill" for="cat-2">Wearables</label>
+                <input type="radio" class="btn-check" name="category" id="cat-3" >
+                <label class="btn btn-outline-primary rounded-pill" for="cat-3">Computers</label>
+                <input type="radio" class="btn-check" name="category" id="cat-4" >
+                <label class="btn btn-outline-primary rounded-pill" for="cat-4">Cameras</label>
+                <input type="radio" class="btn-check" name="category" id="cat-5" >
+                <label class="btn btn-outline-primary rounded-pill" for="cat-5">Gaming</label>
+                <input type="radio" class="btn-check" name="category" id="cat-6" >
+                <label class="btn btn-outline-primary rounded-pill" for="cat-6">Phones</label>
+                <input type="radio" class="btn-check" name="category" id="cat-7" >
+                <label class="btn btn-outline-primary rounded-pill" for="cat-7">Accessories</label>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-3">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="search" class="form-control" placeholder="Search…" aria-label="Search products">
+              </div>
+            </div>
+            <div class="col-sm-5 col-lg-2">
+              <select class="form-select" aria-label="Sort products">
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="rating">Top rated</option>
+                <option value="name">Name A–Z</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#6d28d9;--c2:#db2777" aria-hidden="true"><i class="bi bi-headphones"></i></div>
+              <span class="badge text-bg-dark position-absolute top-0 start-0 m-3">Best Seller</span>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view AuraBeat Wireless Headphones"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Audio</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">AuraBeat Wireless Headphones</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="4.5 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span> <span class="text-body-secondary ms-1">(2)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$89.99</span> <span class="small text-body-secondary text-decoration-line-through ms-1">$119.99</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add AuraBeat Wireless Headphones to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#0ea5e9;--c2:#6366f1" aria-hidden="true"><i class="bi bi-smartwatch"></i></div>
+              <span class="badge text-bg-success position-absolute top-0 start-0 m-3">New</span>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view Pulse Smartwatch S2"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Wearables</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">Pulse Smartwatch S2</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="5.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span> <span class="text-body-secondary ms-1">(1)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$129.00</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add Pulse Smartwatch S2 to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#334155;--c2:#0f766e" aria-hidden="true"><i class="bi bi-laptop"></i></div>
+              <span class="badge text-bg-danger position-absolute top-0 start-0 m-3">Sale</span>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view Nimbus 14 Ultrabook"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Computers</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">Nimbus 14 Ultrabook</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="4.5 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span> <span class="text-body-secondary ms-1">(2)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$849.00</span> <span class="small text-body-secondary text-decoration-line-through ms-1">$949.00</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add Nimbus 14 Ultrabook to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#f59e0b;--c2:#ef4444" aria-hidden="true"><i class="bi bi-camera"></i></div>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view SnapPro Mirrorless Camera"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Cameras</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">SnapPro Mirrorless Camera</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="5.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span> <span class="text-body-secondary ms-1">(1)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$599.00</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add SnapPro Mirrorless Camera to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#16a34a;--c2:#0ea5e9" aria-hidden="true"><i class="bi bi-controller"></i></div>
+              <span class="badge text-bg-danger position-absolute top-0 start-0 m-3">Sale</span>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view Vortex Game Controller"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Gaming</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">Vortex Game Controller</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="4.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></span> <span class="text-body-secondary ms-1">(1)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$49.99</span> <span class="small text-body-secondary text-decoration-line-through ms-1">$64.99</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add Vortex Game Controller to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#ec4899;--c2:#f97316" aria-hidden="true"><i class="bi bi-speaker"></i></div>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view BoomBox Mini Speaker"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Audio</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">BoomBox Mini Speaker</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="5.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span> <span class="text-body-secondary ms-1">(1)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$39.00</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add BoomBox Mini Speaker to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#1e293b;--c2:#7c3aed" aria-hidden="true"><i class="bi bi-keyboard"></i></div>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view TypeMaster Mechanical Keyboard"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Computers</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">TypeMaster Mechanical Keyboard</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="4.5 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span> <span class="text-body-secondary ms-1">(2)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$74.50</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add TypeMaster Mechanical Keyboard to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#2563eb;--c2:#14b8a6" aria-hidden="true"><i class="bi bi-phone"></i></div>
+              <span class="badge text-bg-warning position-absolute top-0 start-0 m-3">Hot</span>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view Nova X Smartphone"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Phones</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">Nova X Smartphone</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="5.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span> <span class="text-body-secondary ms-1">(1)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$499.00</span> <span class="small text-body-secondary text-decoration-line-through ms-1">$549.00</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add Nova X Smartphone to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#475569;--c2:#22c55e" aria-hidden="true"><i class="bi bi-plug"></i></div>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view ChargeHub 65W GaN Charger"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Accessories</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">ChargeHub 65W GaN Charger</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="4.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></span> <span class="text-body-secondary ms-1">(1)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$29.99</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add ChargeHub 65W GaN Charger to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#9333ea;--c2:#3b82f6" aria-hidden="true"><i class="bi bi-tablet"></i></div>
+              <span class="badge text-bg-danger position-absolute top-0 start-0 m-3">Sale</span>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view Orbit Tablet 11"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Computers</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">Orbit Tablet 11</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="4.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></span> <span class="text-body-secondary ms-1">(1)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$329.00</span> <span class="small text-body-secondary text-decoration-line-through ms-1">$369.00</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add Orbit Tablet 11 to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#0891b2;--c2:#4f46e5" aria-hidden="true"><i class="bi bi-webcam"></i></div>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view StreamCam HD Webcam"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Cameras</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">StreamCam HD Webcam</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="5.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span> <span class="text-body-secondary ms-1">(1)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$59.00</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add StreamCam HD Webcam to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card product-card h-100 border-0 shadow-sm">
+            <div class="position-relative">
+              <div class="product-thumb d-flex align-items-center justify-content-center text-white" style="--c1:#ca8a04;--c2:#dc2626" aria-hidden="true"><i class="bi bi-battery-charging"></i></div>
+              <button class="btn btn-light btn-sm rounded-circle shadow-sm position-absolute top-0 end-0 m-3 quick-view" type="button"
+                      data-bs-toggle="modal" data-bs-target="#productModal" aria-label="Quick view PowerCell 20K Power Bank"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <span class="small text-primary fw-semibold text-uppercase">Accessories</span>
+              <h3 class="h6 card-title mt-1 mb-2">
+                <a href="#productModal" class="text-body text-decoration-none" data-bs-toggle="modal">PowerCell 20K Power Bank</a>
+              </h3>
+              <div class="small mb-2"><span class="text-warning stars" aria-label="4.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></span> <span class="text-body-secondary ms-1">(1)</span></div>
+              <div class="mt-auto d-flex align-items-center justify-content-between">
+                <div><span class="fs-5 fw-bold">$34.99</span> <span class="small text-body-secondary text-decoration-line-through ms-1">$44.99</span></div>
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-label="Add PowerCell 20K Power Bank to cart">
+                  <i class="bi bi-cart-plus"></i><span class="d-none d-xl-inline ms-1">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================== PROMO BANNER ============================== -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="rounded-4 p-4 p-lg-5 text-white hero shadow">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <h2 class="fw-bold">Use code <span class="badge text-bg-warning">SAVE10</span> for 10% off your first order</h2>
+            <p class="mb-0 text-white-50">Enter it on the cart page. One code per order.</p>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a href="cart.html" class="btn btn-light btn-lg fw-semibold"><i class="bi bi-cart3 me-2"></i>Go to cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== REVIEWS ============================== -->
+  <section class="py-5 bg-white border-top" id="reviews">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="text-primary fw-semibold text-uppercase small">Testimonials</span>
+        <h2 class="fw-bold">What Our Customers Say</h2>
+      </div>
+
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-4">
+          <div class="card h-100 border-0 bg-primary-subtle">
+            <div class="card-body p-4 text-center d-flex flex-column justify-content-center">
+              <div class="display-3 fw-bold text-primary">4.5</div>
+              <div class="fs-4"><span class="text-warning stars" aria-label="4.5 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span></div>
+              <p class="text-body-secondary small mb-4">Based on 15 verified reviews</p>
+              <div class="text-start">
+                <div class="d-flex align-items-center gap-2 small mb-1">
+                  <span class="text-nowrap" style="width:3.2rem">5 <i class="bi bi-star-fill text-warning"></i></span>
+                  <div class="progress flex-grow-1" role="progressbar" aria-label="5 star reviews" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100" style="height:.5rem">
+                    <div class="progress-bar bg-warning" style="width:53%"></div>
+                  </div>
+                  <span class="text-body-secondary text-end" style="width:2.5rem">53%</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 small mb-1">
+                  <span class="text-nowrap" style="width:3.2rem">4 <i class="bi bi-star-fill text-warning"></i></span>
+                  <div class="progress flex-grow-1" role="progressbar" aria-label="4 star reviews" aria-valuenow="47" aria-valuemin="0" aria-valuemax="100" style="height:.5rem">
+                    <div class="progress-bar bg-warning" style="width:47%"></div>
+                  </div>
+                  <span class="text-body-secondary text-end" style="width:2.5rem">47%</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 small mb-1">
+                  <span class="text-nowrap" style="width:3.2rem">3 <i class="bi bi-star-fill text-warning"></i></span>
+                  <div class="progress flex-grow-1" role="progressbar" aria-label="3 star reviews" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="height:.5rem">
+                    <div class="progress-bar bg-warning" style="width:0%"></div>
+                  </div>
+                  <span class="text-body-secondary text-end" style="width:2.5rem">0%</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 small mb-1">
+                  <span class="text-nowrap" style="width:3.2rem">2 <i class="bi bi-star-fill text-warning"></i></span>
+                  <div class="progress flex-grow-1" role="progressbar" aria-label="2 star reviews" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="height:.5rem">
+                    <div class="progress-bar bg-warning" style="width:0%"></div>
+                  </div>
+                  <span class="text-body-secondary text-end" style="width:2.5rem">0%</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 small mb-1">
+                  <span class="text-nowrap" style="width:3.2rem">1 <i class="bi bi-star-fill text-warning"></i></span>
+                  <div class="progress flex-grow-1" role="progressbar" aria-label="1 star reviews" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="height:.5rem">
+                    <div class="progress-bar bg-warning" style="width:0%"></div>
+                  </div>
+                  <span class="text-body-secondary text-end" style="width:2.5rem">0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                  <p class="mb-4">"Ordered the Nimbus 14 on Monday, it arrived Wednesday. Packaging was perfect and support answered my question within minutes."</p>
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center fw-semibold icon-box">UF</span>
+                    <div><div class="fw-semibold">Umar Farooq</div><div class="small text-body-secondary">Verified buyer · Islamabad</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+                  <p class="mb-4">"Best prices I found for the AuraBeat headphones, and the STUDENT15 code made it even better. Checkout took under a minute."</p>
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="rounded-circle bg-danger text-white d-inline-flex align-items-center justify-content-center fw-semibold icon-box">SB</span>
+                    <div><div class="fw-semibold">Sara Bilal</div><div class="small text-body-secondary">Verified buyer · Lahore</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                  <p class="mb-4">"Returned a speaker that wasn't my colour — refund came back in three days with zero hassle. I'll be shopping here again."</p>
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="rounded-circle bg-success text-white d-inline-flex align-items-center justify-content-center fw-semibold icon-box">ZK</span>
+                    <div><div class="fw-semibold">Zoya Kamal</div><div class="small text-body-secondary">Verified buyer · Karachi</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+                  <p class="mb-4">"Great range of accessories. The GaN charger replaced three bricks in my bag. Would love more colour options."</p>
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="rounded-circle bg-info text-white d-inline-flex align-items-center justify-content-center fw-semibold icon-box">TA</span>
+                    <div><div class="fw-semibold">Talha Ahmed</div><div class="small text-body-secondary">Verified buyer · Rawalpindi</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="small text-body-secondary mt-3 mb-0"><i class="bi bi-info-circle me-1"></i>Open any product to read its reviews or write your own.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================== PRODUCT MODAL ============================== -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content border-0 rounded-4">
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-0">
+        <div class="row g-4">
+          <div class="col-md-5"><div class="product-thumb thumb-lg d-flex align-items-center justify-content-center text-white" style="--c1:#6d28d9;--c2:#db2777" aria-hidden="true"><i class="bi bi-headphones"></i></div></div>
+          <div class="col-md-7">
+            <span class="text-primary fw-semibold text-uppercase small">Audio</span>
+            <h2 class="modal-title h3 fw-bold" id="productModalLabel">AuraBeat Wireless Headphones</h2>
+            <div class="mb-3"><span class="text-warning stars" aria-label="4.5 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></span> <span class="ms-1 fw-semibold">4.5</span> <span class="text-body-secondary">· 2 reviews</span></div>
+            <div class="fs-2 fw-bold mb-3">$89.99 <span class="fs-6 fw-normal text-body-secondary text-decoration-line-through">$119.99</span> <span class="badge text-bg-danger fs-6 align-middle">-25%</span></div>
+
+            <ul class="nav nav-underline mb-3" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details-pane" type="button" role="tab" aria-controls="details-pane" aria-selected="true">Details</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-pane" type="button" role="tab" aria-controls="reviews-pane" aria-selected="false">
+                  Reviews <span class="badge rounded-pill text-bg-secondary">2</span>
+                </button>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="details-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
+                <p class="text-body-secondary">Over-ear Bluetooth 5.3 headphones with active noise cancelling, 40-hour battery and plush memory-foam cushions.</p>
+                <ul class="list-unstyled small text-body-secondary mb-4">
+                  <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i>In stock — ships in 24 hours</li>
+                  <li class="mb-1"><i class="bi bi-shield-check text-primary me-2"></i>2-year manufacturer warranty</li>
+                  <li><i class="bi bi-arrow-repeat text-primary me-2"></i>Free 30-day returns</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-3 align-items-center">
+                  <div class="input-group qty-group">
+                    <button class="btn btn-outline-secondary" type="button" aria-label="Decrease quantity"><i class="bi bi-dash"></i></button>
+                    <input type="number" class="form-control text-center" value="1" min="1" max="10" aria-label="Quantity">
+                    <button class="btn btn-outline-secondary" type="button" aria-label="Increase quantity"><i class="bi bi-plus"></i></button>
+                  </div>
+                  <button class="btn btn-primary btn-lg px-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer"><i class="bi bi-cart-plus me-2"></i>Add to cart</button>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="reviews-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+                <div class="list-group list-group-flush mb-4">
+                  <div class="list-group-item px-0">
+                    <div class="d-flex justify-content-between align-items-center"><strong>Ali Khan</strong><small class="text-body-secondary">2026-08-12</small></div>
+                    <div class="small"><span class="text-warning stars" aria-label="5.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span></div>
+                    <p class="mb-0 mt-1">Noise cancelling is superb on my daily bus ride. Battery lasts all week.</p>
+                  </div>
+                  <div class="list-group-item px-0">
+                    <div class="d-flex justify-content-between align-items-center"><strong>Sara Bilal</strong><small class="text-body-secondary">2026-07-30</small></div>
+                    <div class="small"><span class="text-warning stars" aria-label="4.0 out of 5 stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></span></div>
+                    <p class="mb-0 mt-1">Very comfortable. Bass is a little strong for my taste but easy to tune.</p>
+                  </div>
+                </div>
+
+                <div class="card bg-body-tertiary border-0">
+                  <div class="card-body">
+                    <h3 class="h6 fw-bold mb-3"><i class="bi bi-pencil-square me-2"></i>Write a review</h3>
+                    <form class="row g-3" action="index.html#reviews">
+                      <div class="col-sm-7">
+                        <label for="reviewName" class="form-label small">Your name</label>
+                        <input type="text" class="form-control" id="reviewName" name="name" required maxlength="40">
+                      </div>
+                      <div class="col-sm-5">
+                        <label for="reviewRating" class="form-label small">Rating</label>
+                        <select class="form-select" id="reviewRating" name="rating" required>
+                          <option value="">Choose…</option>
+                          <option value="5">★★★★★ Excellent</option>
+                          <option value="4">★★★★ Good</option>
+                          <option value="3">★★★ Average</option>
+                          <option value="2">★★ Poor</option>
+                          <option value="1">★ Terrible</option>
+                        </select>
+                      </div>
+                      <div class="col-12">
+                        <label for="reviewText" class="form-label small">Review</label>
+                        <textarea class="form-control" id="reviewText" name="review" rows="3" required minlength="10" maxlength="400" placeholder="What did you like or dislike?"></textarea>
+                      </div>
+                      <div class="col-12">
+                        <button class="btn btn-primary" type="submit"><i class="bi bi-send me-2"></i>Post review</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="site-footer text-white-50 pt-5 pb-4">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a class="d-flex align-items-center gap-2 fw-bold fs-5 text-white mb-3" href="index.html">
+          <span class="brand-mark rounded-3 text-white d-inline-flex align-items-center justify-content-center"><i class="bi bi-bag-heart-fill"></i></span>ShopNest
+        </a>
+        <p class="small">Your one-stop shop for the latest gadgets and electronics. A Full Stack Web Development lab project built with Bootstrap 5.</p>
+        <div class="d-flex gap-3 fs-5">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="h6 text-white">Shop</h3>
+        <ul class="list-unstyled small d-grid gap-2">
+          <li><a href="index.html#products">All products</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h3 class="h6 text-white">Account</h3>
+        <ul class="list-unstyled small d-grid gap-2">
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign up</a></li>
+          <li><a href="index.html#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h3 class="h6 text-white">Newsletter</h3>
+        <p class="small">Deals and new arrivals, once a week. No spam.</p>
+        <form class="input-group" action="index.html">
+          <input type="email" class="form-control" placeholder="you@example.com" aria-label="Email address" required>
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <hr class="border-secondary my-4">
+    <div class="d-flex flex-wrap justify-content-between gap-2 small">
+      <span>&copy; 2026 ShopNest. Demo store — no real payments are taken.</span>
+      <span><i class="bi bi-credit-card me-1"></i>Visa · Mastercard · Cash on Delivery</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================== CART DRAWER ============================== -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title" id="cartDrawerLabel"><i class="bi bi-bag me-2"></i>Your Cart <span class="badge rounded-pill text-bg-primary">4</span></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+    <div class="alert alert-success small py-2"><i class="bi bi-check-circle me-1"></i>Item added to your cart.</div>
+    <ul class="list-group list-group-flush flex-grow-1">
+      <li class="list-group-item px-0 d-flex align-items-center gap-3">
+        <div class="product-thumb thumb-sm d-flex align-items-center justify-content-center text-white" style="--c1:#6d28d9;--c2:#db2777" aria-hidden="true"><i class="bi bi-headphones"></i></div>
+        <div class="flex-grow-1 small">
+          <div class="fw-semibold">AuraBeat Wireless Headphones</div>
+          <div class="text-body-secondary">2 × $89.99</div>
+        </div>
+        <a href="cart.html" class="btn btn-sm btn-outline-danger border-0" aria-label="Remove AuraBeat Wireless Headphones"><i class="bi bi-trash"></i></a>
+      </li>
+      <li class="list-group-item px-0 d-flex align-items-center gap-3">
+        <div class="product-thumb thumb-sm d-flex align-items-center justify-content-center text-white" style="--c1:#1e293b;--c2:#7c3aed" aria-hidden="true"><i class="bi bi-keyboard"></i></div>
+        <div class="flex-grow-1 small">
+          <div class="fw-semibold">TypeMaster Mechanical Keyboard</div>
+          <div class="text-body-secondary">1 × $74.50</div>
+        </div>
+        <a href="cart.html" class="btn btn-sm btn-outline-danger border-0" aria-label="Remove TypeMaster Mechanical Keyboard"><i class="bi bi-trash"></i></a>
+      </li>
+      <li class="list-group-item px-0 d-flex align-items-center gap-3">
+        <div class="product-thumb thumb-sm d-flex align-items-center justify-content-center text-white" style="--c1:#0891b2;--c2:#4f46e5" aria-hidden="true"><i class="bi bi-webcam"></i></div>
+        <div class="flex-grow-1 small">
+          <div class="fw-semibold">StreamCam HD Webcam</div>
+          <div class="text-body-secondary">1 × $59.00</div>
+        </div>
+        <a href="cart.html" class="btn btn-sm btn-outline-danger border-0" aria-label="Remove StreamCam HD Webcam"><i class="bi bi-trash"></i></a>
+      </li>
+    </ul>
+    <div class="border-top pt-3 mt-3">
+      <div class="d-flex justify-content-between fw-semibold mb-3"><span>Subtotal</span><span>$313.48</span></div>
+      <div class="d-grid gap-2">
+        <a href="cart.html" class="btn btn-outline-primary">View &amp; edit cart</a>
+        <a href="checkout.html" class="btn btn-primary">Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
