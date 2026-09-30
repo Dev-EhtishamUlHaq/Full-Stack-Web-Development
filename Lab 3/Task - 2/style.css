@@ -1,0 +1,310 @@
+/* ============================================================
+   Facebook Home — Clone  |  HTML + Bootstrap 5 (no JavaScript)
+   Layout, flex, spacing, rounding and visibility come from
+   Bootstrap classes in the markup. This file only holds the
+   Facebook palette and the exact sizes Bootstrap has no utility for.
+   ============================================================ */
+
+/* ------------------------------ TOKENS ------------------------------ */
+:root{
+  --blue:        #1877f2;
+  --red:         #e41e3f;
+
+  --bg:          #f0f2f5;
+  --card:        #ffffff;
+  --card-alt:    #f0f2f5;
+  --hover:       #f2f2f2;
+  --hover-2:     #e4e6e9;
+  --divider:     #ced0d4;
+  --divider-soft:#e4e6eb;
+
+  --text:        #050505;
+  --text-2:      #65676b;
+  --text-3:      #8a8d91;
+
+  --shadow-card: 0 1px 2px rgba(0,0,0,.2);
+  --header-h:    56px;
+  --radius:      8px;
+  --radius-lg:   10px;
+
+  /* Bootstrap theme overrides */
+  --bs-body-font-family: "Segoe UI", Helvetica, Arial, Roboto, system-ui, -apple-system, sans-serif;
+  --bs-body-font-size:   15px;
+  --bs-body-line-height: normal;
+  --bs-body-color:       var(--text);
+  --bs-body-color-rgb:   5,5,5;
+  --bs-body-bg:          var(--bg);
+  --bs-primary:          var(--blue);
+  --bs-primary-rgb:      24,119,242;
+  --bs-danger:           var(--red);
+  --bs-danger-rgb:       228,30,63;
+  --bs-link-color:       var(--blue);
+  --bs-link-color-rgb:   24,119,242;
+  --bs-link-hover-color: var(--blue);
+  --bs-link-hover-color-rgb: 24,119,242;
+  --bs-border-color:     var(--divider-soft);
+  --bs-border-radius:    var(--radius);
+}
+
+/* ------------------------------ BASE ------------------------------ */
+html{ scroll-behavior:smooth; }
+body{ -webkit-font-smoothing:antialiased; }
+a{ text-decoration:none; }
+a:hover{ text-decoration:underline; }
+img, svg{ display:block; }
+img{ max-width:100%; }
+button{ color:inherit; background:none; border:0; cursor:pointer; }
+h1,h2,h3,h4{ margin:0; font-size:inherit; font-weight:600; line-height:inherit; }
+p{ margin:0; }
+:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; border-radius:4px; }
+.avatar{ background:var(--card-alt); }
+
+/* Bootstrap badge, sized like Facebook's notification counters */
+.badge{
+  min-width:18px; height:18px; padding:0 5px;
+  font-size:12px; font-weight:600; line-height:14px;
+  border:2px solid var(--card);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  z-index:1030;
+  height:var(--header-h);
+  box-shadow:0 1px 2px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.08);
+}
+.header__left{ min-width:0; }
+.logo, .logo svg{ width:40px; height:40px; }
+
+.search{
+  width:40px; height:40px;
+  background:var(--card-alt);
+  transition:box-shadow .15s ease;
+}
+.search:focus-within{ box-shadow:0 0 0 2px rgba(24,119,242,.35); }
+.search svg{ width:17px; height:17px; color:var(--text-2); flex:none; }
+.search .form-control{ font-size:15px; color:var(--text); }
+.search .form-control::placeholder{ color:var(--text-2); }
+
+/* primary tabs */
+.tab{
+  width:56px; height:48px;
+  color:var(--text-2);
+  transition:background-color .15s ease, color .15s ease;
+}
+.tab svg{ width:26px; height:26px; }
+.tab:hover{ background:var(--hover); }
+.tab--active{ color:var(--blue); }
+.tab--active::after{
+  content:""; position:absolute; left:0; right:0; bottom:-4px; height:3px;
+  background:var(--blue); border-radius:2px 2px 0 0;
+}
+.tab--active:hover{ background:transparent; }
+.tab__badge{ top:4px; right:12px; }
+
+/* action circles */
+.circle-btn{
+  width:40px; height:40px;
+  background:var(--hover-2); color:var(--text);
+  transition:background-color .15s ease;
+}
+.circle-btn:hover{ background:#d8dadf; }
+.circle-btn svg{ width:20px; height:20px; }
+.circle-btn .dot{ top:-2px; right:-2px; }
+.header__avatar{ width:40px; height:40px; }
+
+/* ============================================================
+   PAGE SHELL
+   ============================================================ */
+.layout{ padding-top:var(--header-h); }
+.rail{
+  width:300px;
+  top:var(--header-h);
+  z-index:1;
+  height:calc(100vh - var(--header-h));
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+}
+.rail--right{ width:320px; }
+.rail::-webkit-scrollbar{ width:8px; }
+.rail::-webkit-scrollbar-thumb{ background:transparent; border-radius:4px; }
+.rail:hover::-webkit-scrollbar-thumb{ background:#bcc0c4; }
+
+/* ------------------------------ LEFT RAIL ------------------------------ */
+.rail-link, .ad, .birthday, .contact{ gap:12px; }
+.rail-link{ transition:background-color .15s ease; }
+.rail-link:hover{ background:var(--hover-2); }
+.rail-link img{ width:36px; height:36px; flex:none; }
+.rail-link .rail-icon{ width:36px; height:36px; background:var(--hover-2); color:var(--blue); }
+.rail-link .rail-icon svg{ width:20px; height:20px; }
+.rail-link .chev{ background:#d8dadf; color:var(--text); }
+
+.rail-sep{ margin:10px 8px; border-top:1px solid var(--divider); }
+.rail-title{ color:var(--text-2); font-size:17px; }
+
+.footer-links{ color:var(--text-3); font-size:12px; line-height:1.6; }
+.footer-links a{ color:var(--text-3); }
+
+/* ------------------------------ FEED COLUMN ------------------------------ */
+.feed{ max-width:590px; padding:8px 0 32px; gap:8px; }
+.card{
+  --bs-card-bg: var(--card);
+  border-radius:0;
+  box-shadow:var(--shadow-card);
+}
+
+/* ---------- stories ---------- */
+.story{
+  border-radius:var(--radius-lg); aspect-ratio:3/5;
+  box-shadow:var(--shadow-card); background:var(--card);
+}
+.story img{ width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
+.story:hover img{ transform:scale(1.06); }
+.story::after{
+  content:""; position:absolute; inset:auto 0 0 0; height:55%;
+  background:linear-gradient(to top,rgba(0,0,0,.65),transparent);
+}
+.story__ring{
+  top:10px; left:10px; z-index:2;
+  width:40px; height:40px;
+  border:3px solid var(--blue); padding:2px; background:var(--card);
+}
+.story__ring img{ border-radius:50%; }
+.story__name{ left:10px; right:10px; bottom:10px; z-index:2; font-size:12px; line-height:1.25; }
+/* "create story" tile */
+.story--create img{ height:72%; }
+.story--create .plus{
+  bottom:46px; z-index:3;
+  width:40px; height:40px;
+  background:var(--blue); border:4px solid var(--card);
+}
+.story--create .plus svg{ width:18px; height:18px; }
+.story--create .label{ z-index:2; padding:0 8px 12px; font-size:13px; color:var(--text); }
+.story--create::after{ display:none; }
+
+/* ---------- composer ---------- */
+.composer{ padding:12px 16px; }
+.composer__top img{ width:40px; height:40px; flex:none; }
+.composer__input{
+  height:40px;
+  background:var(--card-alt); color:var(--text-2); font-size:17px;
+  transition:background-color .15s ease;
+}
+.composer__input:hover{ background:var(--hover-2); }
+.composer hr{ border-top:1px solid var(--divider-soft); opacity:1; margin:12px 0 4px; }
+.composer__btn{ flex:1; padding:9px 0; color:var(--text-2); transition:background-color .15s ease; }
+.composer__btn:hover{ background:var(--hover); }
+.composer__btn svg{ width:22px; height:22px; flex:none; }
+.i-live{ color:#f3425f; } .i-photo{ color:#45bd62; } .i-feeling{ color:#f7b928; }
+
+/* ---------- post ---------- */
+.post__head{ padding-top:12px; }
+.post__head img{ width:40px; height:40px; flex:none; }
+.post__meta{ min-width:0; line-height:1.3; }
+.post__author:hover{ text-decoration:underline; }
+.post__sub{ gap:5px; color:var(--text-2); font-size:13px; margin-top:2px; }
+.post__sub svg{ width:12px; height:12px; }
+.post__more{ width:36px; height:36px; color:var(--text-2); transition:background-color .15s ease; }
+.post__more:hover{ background:var(--hover); }
+.post__more svg{ width:20px; height:20px; }
+
+.post__text{ padding-top:10px; padding-bottom:12px; line-height:1.4; }
+
+/* text-only status post on a colored background */
+.status-bg{
+  min-height:300px; padding:32px;
+  font-size:22px; line-height:1.35;
+  background:linear-gradient(135deg,#1877f2 0%,#7b2ff7 55%,#f107a3 100%);
+}
+.status-bg--warm{ background:linear-gradient(135deg,#f7971e,#ff512f 60%,#dd2476); }
+
+.post__media--grid{ grid-template-columns:1fr 1fr; gap:2px; }
+.post__media--grid img{ aspect-ratio:1/1; }
+
+/* reaction summary */
+.post__stats{ padding-top:10px; padding-bottom:10px; color:var(--text-2); }
+.reaction{ width:18px; height:18px; border:2px solid var(--card); margin-left:-4px; }
+.reaction:first-child{ margin-left:0; }
+.reaction svg{ width:10px; height:10px; color:#fff; }
+.r-like{ background:var(--blue); } .r-love{ background:#f3425f; } .r-care{ background:#f7b928; }
+.post__stats button:hover{ text-decoration:underline; }
+
+/* action bar */
+.post__action{ flex:1; color:var(--text-2); font-size:14px; transition:background-color .15s ease, color .15s ease; }
+.post__action:hover{ background:var(--hover); }
+.post__action:active{ color:var(--blue); }
+.post__action svg{ width:20px; height:20px; }
+
+/* comments */
+.comments{ padding-bottom:12px; }
+.comment{ padding:6px 0; }
+.comment img{ width:32px; height:32px; flex:none; }
+.comment__bubble{ background:var(--card-alt); border-radius:18px; padding:8px 12px; }
+.comment__author{ font-size:13px; }
+.comment__body{ line-height:1.35; margin-top:1px; }
+.comment__tools{ padding:2px 0 0 12px; font-size:12px; color:var(--text-2); }
+.comment__tools button:hover{ text-decoration:underline; }
+.comment__tools .time{ color:var(--text-3); }
+
+.comment-box img{ width:32px; height:32px; flex:none; }
+.comment-box .field{ height:36px; background:var(--card-alt); gap:10px !important; }
+.comment-box .form-control{ min-width:0; font-size:15px; }
+.comment-box .form-control::placeholder{ color:var(--text-2); }
+.comment-box .tools{ color:var(--text-2); gap:10px !important; }
+.comment-box .tools svg{ width:16px; height:16px; }
+
+/* ------------------------------ RIGHT RAIL ------------------------------ */
+.rail-head{ padding:12px 8px 4px; color:var(--text-2); font-size:17px; }
+.rail-head .tools button{ width:32px; height:32px; color:var(--text-2); transition:background-color .15s ease; }
+.rail-head .tools button:hover{ background:var(--hover-2); }
+.rail-head .tools svg{ width:16px; height:16px; }
+
+.ad{ transition:background-color .15s ease; }
+.ad:hover{ background:var(--hover-2); }
+.ad img{ width:120px; height:120px; }
+.ad__title{ line-height:1.3; }
+.ad__url{ color:var(--text-2); font-size:13px; }
+
+.birthday .gift{ width:36px; height:36px; background:var(--hover-2); color:#f3425f; }
+.birthday .gift svg{ width:20px; height:20px; }
+.birthday p{ line-height:1.35; }
+
+.contact{ transition:background-color .15s ease; }
+.contact:hover{ background:var(--hover-2); }
+.contact .pic, .contact .pic img{ width:36px; height:36px; }
+.contact .pic--new{ background:var(--hover-2); }
+.contact .online{
+  right:-1px; bottom:-1px;
+  width:11px; height:11px;
+  background:#31a24c; border:2px solid var(--bg);
+}
+.contact .away{ background:#bcc0c4; }
+
+/* ============================================================
+   RESPONSIVE  (mobile-first, on Bootstrap's breakpoints)
+   ============================================================ */
+@media (min-width:576px){
+  .story__name{ font-size:13px; }
+  .post__action{ font-size:15px; }
+  .status-bg{ font-size:28px; min-height:380px; }
+}
+@media (min-width:768px){
+  .search{ width:auto; max-width:240px; min-width:0; }
+  .tab{ width:72px; }
+  .feed{ padding:16px 0 40px; gap:16px; }
+  .card{ border-radius:var(--radius); }
+}
+@media (min-width:992px){
+  .tab{ width:92px; }
+  .tab__badge{ right:26px; }
+}
+@media (min-width:1400px){
+  .rail, .rail--right{ width:360px; }
+  .tab{ width:112px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ transition-duration:.001ms !important; animation-duration:.001ms !important; }
+}
